@@ -1,0 +1,36 @@
+name: Update News Feed
+
+on:
+  schedule:
+    # Запускать каждый день в 6:00 по Москве (UTC+3)
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Позволяет запустить вручную
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install rss-parser
+
+      - name: Fetch news
+        run: node scripts/fetch-news.js
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add news.json
+          git commit -m "🤖 Обновление новостей" || exit 0
+          git push

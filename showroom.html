@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b363b">
+<title>Шоурум — Престиж Мебель</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{--hb:#2b363b;--g:#cba365;--y:#ffd23e;--d:#2e2e2c;--bg:#0b0f10}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
+
+  header{position:fixed;top:0;left:0;right:0;height:80px;background:var(--hb);display:flex;align-items:center;padding:0 40px;z-index:100}
+  .nav-left,.nav-right{display:flex;gap:30px;flex:1}
+  .nav-right{justify-content:flex-end}
+  .logo{flex:1;text-align:center;color:var(--g);font-size:20px;letter-spacing:1.5px;text-decoration:none}
+  header a{color:var(--g);text-decoration:none;font-size:14px;transition:opacity .2s}
+  header a:hover{opacity:.75}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);padding:6px;z-index:120}
+  .burger span{width:24px;height:2px;background:var(--g)}
+  .mobile-menu{position:fixed;top:80px;left:0;right:0;background:var(--hb);display:none;flex-direction:column;padding:10px 24px 20px;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .mobile-menu a{color:var(--g);text-decoration:none;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .mobile-menu.open{display:flex}
+
+  .showroom-hero{padding:160px 24px 70px;text-align:center;background:linear-gradient(180deg,#0b0f10 0%,#1a2226 100%)}
+  .showroom-hero h1{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;margin-bottom:24px}
+  .showroom-hero p{color:#cfd8dc;max-width:760px;margin:0 auto 40px;line-height:1.8;font-size:clamp(.95rem,1.6vw,1.15rem)}
+  .hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:20px}
+  .hero-stat{padding:12px 24px;background:rgba(203,163,101,.1);border:1px solid rgba(203,163,101,.3);border-radius:30px;color:var(--g);font-size:14px;font-weight:600}
+  .hero-stat b{color:#fff;font-weight:700}
+
+  .cat-nav{position:sticky;top:80px;background:var(--hb);z-index:50;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);overflow-x:auto;scrollbar-width:none}
+  .cat-nav::-webkit-scrollbar{display:none}
+  .cat-nav-inner{display:flex;gap:8px;padding:14px 24px;max-width:1200px;margin:0 auto;white-space:nowrap}
+  .cat-btn{background:transparent;border:1px solid rgba(203,163,101,.35);color:var(--g);padding:10px 22px;border-radius:30px;font:inherit;font-size:14px;cursor:pointer;transition:all .25s;white-space:nowrap}
+  .cat-btn:hover{background:rgba(203,163,101,.1)}
+  .cat-btn.active{background:var(--g);color:#1a1a1a;border-color:var(--g);font-weight:600}
+
+  .category{padding:80px 24px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .category:nth-child(even){background:var(--d)}
+  .cat-header{max-width:900px;margin:0 auto 50px;text-align:center}
+  .cat-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:var(--g);margin-bottom:14px}
+  .cat-explain{color:#e0e4e6;font-size:15px;line-height:1.7;margin-bottom:20px;font-weight:500}
+  .cat-brands{display:inline-block;padding:8px 20px;background:rgba(203,163,101,.08);border:1px solid rgba(203,163,101,.2);border-radius:20px;color:#b8bcba;font-size:13px;line-height:1.6}
+  .cat-brands b{color:var(--g)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;max-width:1200px;margin:0 auto}
+
+  .card{background:#1c1c1a;border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+  .card.selected{border-color:var(--g);box-shadow:0 0 0 2px rgba(203,163,101,.4)}
+  .card-img{aspect-ratio:4/3;background:#252525;display:flex;align-items:center;justify-content:center;color:#5c5c58;font-size:13px;overflow:hidden;position:relative;cursor:pointer}
+  .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .card-img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .card-body{padding:18px 20px 22px;flex:1;display:flex;flex-direction:column}
+  .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .card-brand{font-size:11px;color:var(--g);letter-spacing:1px;text-transform:uppercase;font-weight:600}
+  .card-price{font-size:14px;letter-spacing:1px}
+  .card-name{font-size:16px;font-weight:600;color:#fff;margin-bottom:10px}
+  .card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+  .card-tag{background:rgba(203,163,101,.12);color:var(--g);padding:4px 10px;border-radius:12px;font-size:11px}
+  .card-desc{font-size:13px;color:#a8acaa;line-height:1.6;margin-bottom:16px;flex:1}
+  .card-actions{display:flex;gap:8px}
+  .btn-detail{flex:1;background:transparent;border:1px solid rgba(203,163,101,.4);color:var(--g);padding:10px;border-radius:8px;font:inherit;font-size:13px;cursor:pointer;transition:all .2s;font-weight:600}
+  .btn-detail:hover{background:rgba(203,163,101,.1)}
+  .btn-add{flex:1;background:var(--g);border:0;color:#1a1a1a;padding:10px;border-radius:8px;font:inherit;font-size:13px;cursor:pointer;transition:all .2s;font-weight:700}
+  .btn-add:hover{opacity:.85}
+  .btn-add.added{background:#4a7a4a;color:#fff}
+
+  .project-bar{
+    position:fixed;bottom:-100px;left:50%;transform:translateX(-50%);
+    background:#1c1c1a;border:1px solid var(--g);border-radius:14px;
+    padding:14px 20px;display:flex;align-items:center;gap:16px;
+    box-shadow:0 14px 40px rgba(0,0,0,.7);z-index:150;
+    transition:bottom .35s ease;max-width:calc(100% - 32px);
+  }
+  .project-bar.visible{bottom:20px}
+  .project-bar-count{background:var(--g);color:#1a1a1a;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+  .project-bar-text{color:#fff;font-size:14px;font-weight:500;line-height:1.3}
+  .project-bar-text b{color:var(--g)}
+  .project-bar-btn{background:var(--g);color:#1a1a1a;border:0;padding:12px 24px;border-radius:8px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+  .project-bar-btn:hover{opacity:.85}
+  .project-bar-clear{background:transparent;border:0;color:#8a8f94;font:inherit;font-size:12px;cursor:pointer;padding:6px;text-decoration:underline}
+  .project-bar-clear:hover{color:#fff}
+
+  .cta-section{background:var(--d);padding:100px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+  .cta-section h2{font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:700;margin-bottom:22px}
+  .cta-section p{color:#c9cdcb;max-width:640px;margin:0 auto 40px;line-height:1.8;font-size:clamp(.95rem,1.5vw,1.05rem)}
+  .btn-gold{display:inline-block;background:var(--g);color:#1a1a1a;padding:18px 46px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:opacity .2s;border:0;cursor:pointer;font-family:inherit}
+  .btn-gold:hover{opacity:.85}
+
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
+  .modal.open{display:flex;opacity:1}
+  .modal-box{background:#1c1c1a;border-radius:16px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;position:relative;display:grid;grid-template-columns:1fr 1fr}
+  .modal-img{background:#252525;display:flex;align-items:center;justify-content:center;min-height:300px;color:#5c5c58}
+  .modal-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .modal-info{padding:36px 32px}
+  .modal-brand{font-size:11px;color:var(--g);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+  .modal-title{font-size:24px;font-weight:700;margin-bottom:18px}
+  .modal-desc{color:#c9cdcb;line-height:1.8;font-size:15px;margin-bottom:22px}
+  .modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+  .tag{background:rgba(203,163,101,.12);color:var(--g);padding:6px 14px;border-radius:20px;font-size:12px}
+  .modal-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.5);border:0;color:#fff;width:38px;height:38px;border-radius:50%;font-size:20px;cursor:pointer;z-index:10;line-height:1;display:flex;align-items:center;justify-content:center}
+  .modal-close:hover{background:rgba(203,163,101,.8);color:#000}
+
+  footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .f-left p{font-size:13px;color:#e8e8e6;margin-bottom:4px}
+  .f-left a{color:#e8e8e6;text-decoration:none}
+  .f-right{display:flex;gap:24px;flex-wrap:wrap}
+  .f-top{color:#fff;font-size:13px;font-weight:600;text-decoration:none;transition:color .2s}
+  .f-top:hover{color:var(--g)}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  @media(max-width:820px){
+    .modal-box{grid-template-columns:1fr}
+    .modal-img{min-height:240px;max-height:300px}
+    .modal-info{padding:26px 22px}
+  }
+  @media(max-width:768px){
+    html{scroll-padding-top:70px}
+    header{height:60px;padding:0 16px}
+    .nav-left,.nav-right{display:none}
+    .burger{display:flex}
+    .mobile-menu{top:60px}
+    .logo{font-size:17px}
+    .cat-nav{top:60px}
+    .showroom-hero{padding:120px 20px 60px}
+    .category{padding:60px 20px}
+    footer{padding:28px 16px;justify-content:center;text-align:center;flex-direction:column}
+    .f-right{justify-content:center}
+    .project-bar{flex-wrap:wrap;justify-content:center;text-align:center;padding:12px 16px}
+    .project-bar-text{width:100%;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <div class="nav-left">
+    <a href="index.html">Главная</a>
+    <a href="works.html">Примеры работ</a>
+  </div>
+  <a href="index.html" class="logo">ПРЕСТИЖ МЕБЕЛЬ</a>
+  <div class="nav-right">
+    <a href="showroom.html">Шоурум</a>
+    <a href="blog.html">Блог</a>
+    <a href="about.html">О компании</a>
+    <a href="contacts.html">Контакты</a>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Главная</a>
+  <a href="works.html">Примеры работ</a>
+  <a href="showroom.html">Шоурум</a>
+  <a href="blog.html">Блог</a>
+  <a href="about.html">О компании</a>
+  <a href="contacts.html">Контакты</a>
+</nav>
+
+<section class="showroom-hero">
+  <h1>Шоурум материалов и фурнитуры</h1>
+  <p>Выберите то, из чего будет создана ваша мебель. Отмечайте понравившиеся материалы кнопкой «В проект» — и мы учтём ваш выбор при расчёте.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><b>200+</b> декоров ЛДСП</div>
+    <div class="hero-stat"><b>50+</b> видов фасадов</div>
+    <div class="hero-stat"><b>30+</b> столешниц</div>
+    <div class="hero-stat"><b>100%</b> проверенная фурнитура</div>
+  </div>
+</section>
+
+<nav class="cat-nav">
+  <div class="cat-nav-inner" id="catNav"></div>
+</nav>
+
+<main id="categories"></main>
+
+<section class="cta-section">
+  <h2 class="reveal">Не можете определиться?</h2>
+  <p class="reveal">Отправьте нам фото вашего помещения — мы предложим 3 варианта материалов и покажем, как это будет выглядеть в 3D. Бесплатно.</p>
+  <a href="contacts.html" class="btn-gold reveal">Получить консультацию</a>
+</section>
+
+<footer>
+  <div class="f-left">
+    <p><b>Режим работы:</b> 9:00 - 18:00</p>
+    <p><b>Контакты:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
+  </div>
+  <div class="f-right">
+    <a class="f-top" href="blog.html">Блог</a>
+    <a class="f-top" href="privacy.html">Политика конфиденциальности ↑</a>
+  </div>
+</footer>
+
+<div class="project-bar" id="projectBar">
+  <div class="project-bar-count" id="projectCount">0</div>
+  <div class="project-bar-text">
+    <b>Ваш проект:</b> выбрано материалов — <span id="projectCountText">0</span>
+  </div>
+  <button class="project-bar-btn" id="projectGo">Обсудить проект</button>
+  <button class="project-bar-clear" id="projectClear">Очистить</button>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">×</button>
+    <div class="modal-img" id="modalImg"></div>
+    <div class="modal-info">
+      <div class="modal-brand" id="modalBrand"></div>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-tags" id="modalTags"></div>
+      <button class="btn-gold" id="modalAddBtn" style="font-size:14px;padding:14px 32px">Добавить в проект</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CATALOG = [
+  {
+    id: 'korpus',
+    title: 'Корпус и декоры ЛДСП',
+    explain: 'Корпус — это «скелет» мебели: боковины, полки, дно. Его видно, когда открываешь дверцу. От декора зависит внутренний вид и цвет мебели.',
+    brands: '<b>Egger</b> — эталон качества из Австрии. <b>Kronospan</b> — надёжный европейский бренд по доступной цене. <b>Swisspan</b> — современные текстуры.',
+    items: [
+      { brand:'Egger', name:'Дуб Сонома', desc:'Тёплый натуральный декор под дерево. Классика для кухонь и шкафов.', price:'💰💰', tags:['Под дерево','Тёплый','Классика'], img:'' },
+      { brand:'Kronospan', name:'Белый премиум', desc:'Чистый белый матовый декор. Подходит для современных минималистичных проектов.', price:'💰', tags:['Белый','Универсальный','Для маленьких кухонь'], img:'' },
+      { brand:'Swisspan', name:'Серый графит', desc:'Глубокий графитовый тон. Часто используется как акцент в комбинации со светлыми фасадами.', price:'💰💰', tags:['Серый','Современный','Акцент'], img:'' },
+      { brand:'Egger', name:'Кашемир', desc:'Мягкий бежевый оттенок, придающий уют и теплоту интерьеру.', price:'💰💰', tags:['Бежевый','Уютный','Для спальни'], img:'' },
+    ]
+  },
+  {
+    id: 'fasady',
+    title: 'Фасады',
+    explain: 'Фасады — это то, что видно снаружи: дверцы, ящики. Именно они создают внешний вид кухни или шкафа.',
+    brands: '<b>МДФ в плёнке</b> — универсально и практично. <b>Эмаль</b> — премиум-покрытие. <b>Шпон</b> — натуральное дерево. <b>Фрезеровка</b> — классический стиль.',
+    items: [
+      { brand:'МДФ в плёнке', name:'Матовый софт-тач', desc:'Бархатистая поверхность, устойчивая к отпечаткам. Более 300 оттенков.', price:'💰💰', tags:['Мат','Софт-тач','300+ цветов'], img:'' },
+      { brand:'Эмаль', name:'Глянцевая эмаль', desc:'Глубокий глянец, лак премиум-класса. Идеален для ярких акцентных фасадов.', price:'💰💰💰', tags:['Глянец','Премиум','Яркие цвета'], img:'' },
+      { brand:'Шпон', name:'Натуральный дуб', desc:'Натуральный шпон дуба с выразительным рисунком. Каждый фасад уникален.', price:'💰💰💰', tags:['Шпон','Натуральный','Дуб'], img:'' },
+      { brand:'Фрезеровка', name:'Классика с фрезеровкой', desc:'Фрезерованные фасады с филёнкой. Классический стиль с современным качеством.', price:'💰💰', tags:['Классика','Фрезеровка','МДФ'], img:'' },
+    ]
+  },
+  {
+    id: 'stoleshnicy',
+    title: 'Столешницы',
+    explain: 'Столешница — рабочая поверхность на кухне. Самая нагруженная часть: на неё ставят горячее, режут, проливают. От материала зависит долговечность.',
+    brands: '<b>Кварц</b> — премиум, не боится ничего. <b>HPL</b> — прочный компакт-ламинат. <b>Акрил</b> — бесшовный и ремонтопригодный. <b>Постформинг</b> — бюджетно и практично.',
+    items: [
+      { brand:'Quartz', name:'Кварцевый агломерат', desc:'Прочный, термостойкий, не боится царапин. Идеален для кухонь.', price:'💰💰💰', tags:['Кварц','Термостойкий','Премиум'], img:'' },
+      { brand:'HPL', name:'Компакт-ламинат', desc:'Тонкий, прочный, влагостойкий. Отлично подходит для современных кухонь.', price:'💰💰', tags:['HPL','Влагостойкий','Современный'], img:'' },
+      { brand:'Acryl', name:'Акриловая столешница', desc:'Бесшовная, глянцевая, ремонтопригодная. Можно восстановить при повреждении.', price:'💰💰💰', tags:['Акрил','Бесшовный','Глянец'], img:'' },
+      { brand:'Postforming', name:'Постформинг', desc:'Бюджетный вариант с закруглённым краем. Практично и аккуратно.', price:'💰', tags:['Постформинг','Эконом','Практичный'], img:'' },
+    ]
+  },
+  {
+    id: 'furnitura',
+    title: 'Фурнитура',
+    explain: 'Фурнитура — это петли, доводчики, ящики. От неё зависит, как мебель открывается и закрывается. Экономить здесь не стоит — от неё зависит срок службы.',
+    brands: '<b>BLUM</b> — мировой лидер из Австрии. <b>Hettich</b> — немецкое качество. <b>Boyard</b> — надёжный вариант по доступной цене.',
+    items: [
+      { brand:'BLUM', name:'CLIP top BLUMOTION', desc:'Петли с доводчиком. Плавное и бесшумное закрывание дверей.', price:'💰💰💰', tags:['BLUM','Доводчик','Петли'], img:'' },
+      { brand:'Hettich', name:'Avantos', desc:'Подъёмный механизм для верхних шкафов. Открывание вверх одним движением.', price:'💰💰💰', tags:['Hettich','Подъёмный','Верхние шкафы'], img:'' },
+      { brand:'BLUM', name:'TANDEMBOX', desc:'Ящики с плавным ходом и доводчиком. Скрытая система направляющих.', price:'💰💰💰', tags:['BLUM','Ящики','Скрытые'], img:'' },
+      { brand:'Boyard', name:'Петли с доводчиком', desc:'Надёжная фурнитура по доступной цене. Отличное соотношение цены и качества.', price:'💰', tags:['Boyard','Петли','Доступно'], img:'' },
+    ]
+  },
+  {
+    id: 'ruchki',
+    title: 'Ручки и профили',
+    explain: 'Ручки и профили — то, за что вы берётесь рукой. Или не берётесь — сейчас популярны системы push-to-open и скрытые профили.',
+    brands: '<b>Профили</b> — скрытые ручки для минимализма. <b>Push-to-open</b> — вообще без ручек. <b>Латунь и металл</b> — акцентные ручки.',
+    items: [
+      { brand:'Профиль', name:'Интегрированный G-профиль', desc:'Скрытая ручка-профиль. Современный минималистичный вид.', price:'💰💰', tags:['Профиль','Скрытый','Минимализм'], img:'' },
+      { brand:'Push', name:'Push-to-open', desc:'Открывание нажатием. Без ручек — идеально для современных фасадов.', price:'💰💰', tags:['Push','Без ручек','Современно'], img:'' },
+      { brand:'Ручки', name:'Латунные ручки', desc:'Тёплая латунь с брашированной поверхностью. Премиальный акцент.', price:'💰💰💰', tags:['Латунь','Премиум','Акцент'], img:'' },
+      { brand:'Ручки', name:'Чёрные матовые', desc:'Матовый чёрный металл. Строгий и современный стиль.', price:'💰💰', tags:['Чёрный','Мат','Металл'], img:'' },
+    ]
+  },
+];
+
+const catNav = document.getElementById('catNav');
+const categoriesEl = document.getElementById('categories');
+
+CATALOG.forEach((cat, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'cat-btn' + (i === 0 ? ' active' : '');
+  btn.textContent = cat.title;
+  btn.dataset.target = 'cat-' + cat.id;
+  btn.onclick = () => {
+    document.getElementById('cat-' + cat.id).scrollIntoView({ behavior: 'smooth' });
+  };
+  catNav.appendChild(btn);
+
+  const section = document.createElement('section');
+  section.className = 'category';
+  section.id = 'cat-' + cat.id;
+  section.innerHTML = `
+    <div class="cat-header">
+      <h2 class="cat-title reveal">${cat.title}</h2>
+      <p class="cat-explain reveal">${cat.explain}</p>
+      <div class="cat-brands reveal">${cat.brands}</div>
+    </div>
+    <div class="grid">
+      ${cat.items.map((item, j) => `
+        <div class="card reveal" data-cat="${cat.title}" data-brand="${item.brand}" data-name="${item.name}" data-desc="${item.desc}" data-price="${item.price}" data-img="${item.img || ''}" data-tags='${JSON.stringify(item.tags)}'>
+          <div class="card-img" data-action="detail">
+            ${item.img ? `<img src="${item.img}" alt="${item.name}" loading="lazy">` : `<div class="ph">Фото материала</div>`}
+          </div>
+          <div class="card-body">
+            <div class="card-top">
+              <div class="card-brand">${item.brand}</div>
+              <div class="card-price">${item.price}</div>
+            </div>
+            <div class="card-name">${item.name}</div>
+            <div class="card-tags">${item.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+            <div class="card-desc">${item.desc}</div>
+            <div class="card-actions">
+              <button class="btn-detail" data-action="detail">Подробнее</button>
+              <button class="btn-add" data-action="add">В проект</button>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  categoriesEl.appendChild(section);
+});
+
+const STORAGE_KEY = 'prestige_project';
+let project = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+const projectBar = document.getElementById('projectBar');
+const projectCount = document.getElementById('projectCount');
+const projectCountText = document.getElementById('projectCountText');
+
+function saveProject() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(project));
+  updateProjectBar();
+  updateCardStates();
+}
+
+function updateProjectBar() {
+  const n = project.length;
+  projectCount.textContent = n;
+  projectCountText.textContent = n;
+  projectBar.classList.toggle('visible', n > 0);
+}
+
+function updateCardStates() {
+  document.querySelectorAll('.card').forEach(card => {
+    const name = card.dataset.name;
+    const added = project.some(p => p.name === name);
+    card.classList.toggle('selected', added);
+    const btn = card.querySelector('.btn-add');
+    if (btn) {
+      btn.textContent = added ? '✓ В проекте' : 'В проект';
+      btn.classList.toggle('added', added);
+    }
+  });
+}
+
+function toggleProject(item) {
+  const idx = project.findIndex(p => p.name === item.name);
+  if (idx >= 0) {
+    project.splice(idx, 1);
+  } else {
+    project.push(item);
+  }
+  saveProject();
+}
+
+let currentModalItem = null;
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  const card = btn.closest('.card');
+  if (!card) return;
+
+  const item = {
+    cat: card.dataset.cat,
+    brand: card.dataset.brand,
+    name: card.dataset.name,
+    desc: card.dataset.desc,
+    price: card.dataset.price,
+    tags: JSON.parse(card.dataset.tags || '[]'),
+    img: card.dataset.img || ''
+  };
+
+  if (btn.dataset.action === 'add') {
+    e.stopPropagation();
+    toggleProject(item);
+  } else if (btn.dataset.action === 'detail') {
+    openModal(item);
+  }
+});
+
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const modalBrand = document.getElementById('modalBrand');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalTags = document.getElementById('modalTags');
+const modalAddBtn = document.getElementById('modalAddBtn');
+
+function openModal(item) {
+  currentModalItem = item;
+  modalBrand.textContent = item.brand + ' ' + item.price;
+  modalTitle.textContent = item.name;
+  modalDesc.textContent = item.desc;
+  modalImg.innerHTML = item.img ? `<img src="${item.img}" alt="${item.name}">` : `<div style="padding:40px;color:#5c5c58">Фото материала</div>`;
+  modalTags.innerHTML = item.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  const added = project.some(p => p.name === item.name);
+  modalAddBtn.textContent = added ? '✓ В проекте' : 'Добавить в проект';
+  modalAddBtn.style.background = added ? '#4a7a4a' : '';
+  modalAddBtn.style.color = added ? '#fff' : '';
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  currentModalItem = null;
+}
+
+document.getElementById('modalClose').onclick = closeModal;
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+modalAddBtn.onclick = () => {
+  if (currentModalItem) {
+    toggleProject(currentModalItem);
+    const added = project.some(p => p.name === currentModalItem.name);
+    modalAddBtn.textContent = added ? '✓ В проекте' : 'Добавить в проект';
+    modalAddBtn.style.background = added ? '#4a7a4a' : '';
+    modalAddBtn.style.color = added ? '#fff' : '';
+  }
+};
+
+document.getElementById('projectClear').onclick = () => {
+  if (confirm('Очистить весь проект?')) {
+    project = [];
+    saveProject();
+  }
+};
+
+document.getElementById('projectGo').onclick = () => {
+  if (project.length === 0) return;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(project));
+  window.location.href = 'contacts.html#quoteForm';
+};
+
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.onclick = () => mobileMenu.classList.toggle('open');
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+const catButtons = document.querySelectorAll('.cat-btn');
+const sections = document.querySelectorAll('.category');
+window.addEventListener('scroll', () => {
+  let activeId = '';
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top <= 200 && rect.bottom > 200) activeId = sec.id;
+  });
+  catButtons.forEach(b => b.classList.toggle('active', b.dataset.target === activeId));
+}, { passive: true });
+
+updateProjectBar();
+updateCardStates();
+</script>
+</body>
+</html>

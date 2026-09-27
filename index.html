@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#2b363b" />
+<title>Престиж Мебель</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{--hb:#2b363b;--g:#cba365;--y:#ffd23e;--d:#2e2e2c;--bg:#0b0f10}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+
+  header{position:fixed;top:0;left:0;right:0;height:80px;background:var(--hb);display:flex;align-items:center;padding:0 40px;z-index:100}
+  .nav-left,.nav-right{display:flex;gap:30px;flex:1}
+  .nav-right{justify-content:flex-end}
+  .logo{flex:1;text-align:center;color:var(--g);font-size:20px;letter-spacing:1.5px;text-decoration:none}
+  header a{color:var(--g);text-decoration:none;font-size:14px;transition:opacity .2s}
+  header a:hover{opacity:.75}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);padding:6px;z-index:120}
+  .burger span{width:24px;height:2px;background:var(--g)}
+  .mobile-menu{position:fixed;top:80px;left:0;right:0;background:var(--hb);display:none;flex-direction:column;padding:10px 24px 20px;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .mobile-menu a{color:var(--g);text-decoration:none;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .mobile-menu.open{display:flex}
+
+  .scroll-wrapper{height:400vh;position:relative}
+  .sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0b0f10}
+  .sticky canvas,
+  .sticky img.hero-static{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;background:#0b0f10}
+  .shade{position:absolute;inset:0;background:rgba(0,0,0,.45);pointer-events:none;z-index:10}
+  .hero{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%;max-width:900px;pointer-events:none;z-index:20}
+  .hero h1{font-size:clamp(1.9rem,5vw,4.5rem);font-weight:700;margin-bottom:24px}
+  .hero p{font-size:clamp(.95rem,2vw,1.25rem);font-weight:600;line-height:1.6;max-width:700px;margin:0 auto}
+
+  #loadOverlay{position:fixed;inset:0;background:#0b0f10;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity .6s ease;pointer-events:none;opacity:0}
+  #loadOverlay.active{opacity:1;pointer-events:auto}
+  #loadOverlay .spinner{width:40px;height:40px;border:4px solid rgba(203,163,101,.2);border-top-color:var(--g);border-radius:50%;animation:spin .8s linear infinite}
+  #loadOverlay p{margin-top:20px;color:var(--g);font-size:14px;letter-spacing:.5px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .about-section{background:var(--hb);padding:120px 24px 60px;text-align:center}
+  .about-section h2{color:#fff;font-size:clamp(1.6rem,4vw,3rem);font-weight:700;line-height:1.35;max-width:900px;margin:0 auto 40px}
+  .about-section p{color:#cfd8dc;max-width:950px;margin:0 auto 50px;line-height:1.9;font-size:clamp(.95rem,1.5vw,1.1rem)}
+  .calc-btn{display:inline-block;background:#000;color:var(--y);padding:18px 44px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem;border:0;cursor:pointer;transition:opacity .2s}
+  .calc-btn:hover{opacity:.85}
+
+  .why{background:var(--d);padding:120px 24px}
+  .why h2{text-align:center;color:#fff;font-size:clamp(1.6rem,3.2vw,2.5rem);font-weight:700;margin-bottom:60px}
+  .why-sub{text-align:center;color:#c9cdcb;max-width:680px;margin:0 auto 90px;line-height:1.8;font-size:clamp(1rem,1.6vw,1.2rem)}
+  .why-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;column-gap:70px;row-gap:70px}
+  .feature{display:flex;gap:22px}
+  .check{flex:0 0 30px;height:30px;border-radius:50%;background:var(--g);color:#262624;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-top:2px}
+  .feature h3{color:#fff;font-size:1.05rem;margin-bottom:14px;font-weight:700}
+  .feature p{color:#b8bcba;line-height:1.75;font-size:.95rem}
+
+  .works{background:var(--d);padding:100px 0 90px}
+  .works h2{text-align:center;color:var(--g);font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;margin-bottom:40px}
+  .works-sub{text-align:center;color:var(--g);opacity:.85;margin-bottom:80px;font-size:clamp(.95rem,1.5vw,1.15rem);padding:0 20px}
+  .works-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:0 36px}
+  .works-grid figure{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#1c1c1a;margin:0}
+  .works-grid img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .works-grid figure:hover img{transform:scale(1.05)}
+  .works-grid .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5c5c58}
+
+  .promise{background:#f4f6fa;padding:140px 24px;text-align:center}
+  .promise p{color:#111;font-style:italic;font-size:clamp(1rem,2vw,1.4rem);line-height:2.1;max-width:1050px;margin:0 auto}
+  .promise b{font-weight:700}
+
+  .quote{background:var(--d);padding:120px 24px 140px}
+  .quote h2{text-align:center;color:var(--g);font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;margin-bottom:20px}
+  .quote-sub{text-align:center;color:#c9cdcb;max-width:640px;margin:0 auto 40px;line-height:1.9;font-size:clamp(.95rem,1.5vw,1.05rem)}
+
+  .consent-box{max-width:920px;margin:0 auto 24px;text-align:center}
+  .consent-label{display:inline-flex;align-items:flex-start;gap:12px;cursor:pointer;color:#c9cdcb;font-size:13px;line-height:1.6;text-align:left;max-width:640px}
+  .consent-label input{margin-top:2px;width:18px;height:18px;accent-color:var(--g);flex-shrink:0;cursor:pointer}
+  .consent-label a{color:var(--g);text-decoration:underline}
+
+  .yandex-form-wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:32px;
+    border-radius:20px;
+    background:#1c1c1a;
+    border:1px solid rgba(203,163,101,.25);
+    box-shadow:0 24px 60px rgba(0,0,0,.55);
+    position:relative;
+  }
+  .yandex-form-wrap iframe{
+    display:block;
+    width:100% !important;
+    min-height:760px;
+    border:0;
+    border-radius:12px;
+    background:#1c1c1a;
+  }
+  .yandex-form-wrap.locked{pointer-events:none;opacity:.4;filter:grayscale(.5);transition:all .3s}
+  .form-locked-msg{max-width:920px;margin:0 auto 20px;text-align:center;color:var(--y);font-size:13px;display:none}
+  .form-locked-msg.show{display:block}
+
+  @media(min-width:1100px){
+    .yandex-form-wrap{max-width:960px;padding:40px}
+  }
+
+  footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .f-left p{font-size:13px;color:#e8e8e6;margin-bottom:4px}
+  .f-left a{color:#e8e8e6;text-decoration:none}
+  .f-right{display:flex;gap:24px;flex-wrap:wrap}
+  .f-top{color:#fff;font-size:13px;font-weight:600;text-decoration:none;transition:color .2s}
+  .f-top:hover{color:var(--g)}
+
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .why-grid .feature:nth-child(2){transition-delay:.15s}
+  .why-grid .feature:nth-child(3){transition-delay:.3s}
+  .why-grid .feature:nth-child(4){transition-delay:.45s}
+
+  #cookieBanner{position:fixed;bottom:0;left:0;right:0;background:#1c1c1a;border-top:1px solid var(--g);padding:16px 24px;display:none;align-items:center;justify-content:space-between;gap:16px;z-index:500;flex-wrap:wrap;box-shadow:0 -10px 30px rgba(0,0,0,.5)}
+  #cookieBanner p{color:#cfd8dc;font-size:13px;margin:0;flex:1;min-width:250px;line-height:1.5}
+  #cookieBanner a{color:var(--g);text-decoration:underline}
+  .cookie-btns{display:flex;gap:10px;flex-wrap:wrap}
+  .cookie-btns button{font-family:inherit;font-size:13px;cursor:pointer;padding:10px 24px;border-radius:8px;font-weight:700;transition:opacity .2s}
+  .cookie-btns button:hover{opacity:.85}
+  #cookieAccept{background:var(--g);color:#1a1a1a;border:0}
+  #cookieDecline{background:transparent;color:#c9cdcb;border:1px solid #555}
+
+  @media(max-width:820px){
+    .scroll-wrapper{height:100vh;height:100svh}
+    .sticky{position:relative;height:100%}
+    .why-grid{grid-template-columns:1fr}
+    .works-grid{grid-template-columns:1fr;padding:0 16px}
+  }
+  @media(max-width:768px){
+    html{scroll-padding-top:70px}
+    header{height:60px;padding:0 16px}
+    .nav-left,.nav-right{display:none}
+    .burger{display:flex}
+    .mobile-menu{top:60px}
+    .logo{font-size:17px}
+    .about-section{padding:90px 20px 40px}
+    .why{padding:80px 20px}
+    .why-sub{margin-bottom:60px}
+    .promise{padding:80px 20px}
+    .quote{padding:80px 16px 100px}
+    .yandex-form-wrap{padding:16px;border-radius:16px}
+    .yandex-form-wrap iframe{min-height:820px}
+    footer{padding:28px 16px;justify-content:center;text-align:center;flex-direction:column}
+    .f-right{justify-content:center}
+    #cookieBanner{padding:14px 16px;justify-content:center}
+    .cookie-btns{width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<div id="loadOverlay" class="active">
+  <div class="spinner"></div>
+  <p id="loadMsg">Загрузка кадров…</p>
+</div>
+
+<header>
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <div class="nav-left">
+    <a href="index.html">Главная</a>
+    <a href="works.html">Примеры работ</a>
+  </div>
+  <a href="index.html" class="logo">ПРЕСТИЖ МЕБЕЛЬ</a>
+  <div class="nav-right">
+    <a href="showroom.html">Шоурум</a>
+    <a href="blog.html">Блог</a>
+    <a href="about.html">О компании</a>
+    <a href="contacts.html">Контакты</a>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Главная</a>
+  <a href="works.html">Примеры работ</a>
+  <a href="showroom.html">Шоурум</a>
+  <a href="blog.html">Блог</a>
+  <a href="about.html">О компании</a>
+  <a href="contacts.html">Контакты</a>
+</nav>
+
+<div class="scroll-wrapper" id="wrap">
+  <div class="sticky" id="sticky">
+    <canvas id="heroCanvas"></canvas>
+    <div class="shade"></div>
+    <div class="hero">
+      <h1>Воплощаем идеи в реальность</h1>
+      <p>Всё, о чём ты мечтал, может ожить именно в тот момент, когда ты решишь.</p>
+    </div>
+  </div>
+</div>
+
+<section id="about" class="about-section">
+  <h2>Не просто мебель. Инженерное решение для вашего комфорта.</h2>
+  <p>Мы следим за трендами и работаем по современным технологиям. Используем точный раскрой, надёжную фурнитуру из Германии и Австрии, качественную кромку. Предлагаем актуальный дизайн, экологичные материалы и 3D-проект до начала изготовления. Гарантируем качество, фиксируем цену после замера без скрытых доплат. Средний срок изготовления — 14 дней.</p>
+  <a href="#contacts" class="calc-btn">Рассчитать стоимость</a>
+</section>
+
+<section class="why">
+  <h2 class="reveal">Почему выбирают нас</h2>
+  <p class="why-sub reveal">Точность раскроя на ЧПУ, надёжность фурнитуры,<br>использование экологичных материалов,<br>фиксированная цена без скрытых доплат.</p>
+  <div class="why-grid">
+    <div class="feature reveal"><div class="check">✓</div><div><h3>Точность раскроя</h3><p>Стыки без щелей, идеальная геометрия. Никакой пыли в зазорах — только чистые линии.</p></div></div>
+    <div class="feature reveal"><div class="check">✓</div><div><h3>Надёжная фурнитура</h3><p>Используем BLUM, Hettich и другую проверенную фурнитуру от европейских производителей. Ящики не разболтаются, дверцы не хлопают — плавный ход на десятилетия.</p></div></div>
+    <div class="feature reveal"><div class="check">✓</div><div><h3>Экологичные материалы</h3><p>Работаем с плитами класса E0 и E1 — это самые безопасные материалы для мебели. Без резкого запаха, подходят для детских комнат и аллергиков.</p></div></div>
+    <div class="feature reveal"><div class="check">✓</div><div><h3>Цена, которая не меняется</h3><p>Смета после замера — окончательная. Все нюансы помещения учитываем заранее, поэтому итоговая сумма всегда совпадает с той, что вы согласовали.</p></div></div>
+  </div>
+</section>
+
+<section id="works" class="works">
+  <h2 class="reveal">Наши работы</h2>
+  <p class="works-sub reveal">Никаких постановок: фото с объектов клиентов</p>
+  <div class="works-grid" id="worksGrid"></div>
+</section>
+
+<section class="promise">
+  <p class="reveal">Гарантируем качество нашей работы. <b>Всегда предложим вариант, который подходит именно вам по сложности, материалу и бюджету — не навязываем готовые шаблоны.</b></p>
+</section>
+
+<section id="contacts" class="quote">
+  <h2 class="reveal">Оставить заявку</h2>
+  <p class="quote-sub reveal">Заполните форму — мы получим заявку и свяжемся с вами в течение дня. Можно прикрепить эскиз, фото или ТЗ.</p>
+
+  <div class="consent-box reveal">
+    <label class="consent-label">
+      <input type="checkbox" id="consentCheck">
+      <span>Я согласен(на) на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank">Политикой конфиденциальности</a> и подтверждаю, что ознакомлен(а) с ней.</span>
+    </label>
+  </div>
+  <p class="form-locked-msg" id="formLockedMsg">Отметьте согласие на обработку персональных данных, чтобы открыть форму.</p>
+
+  <div class="yandex-form-wrap reveal locked" id="formWrap">
+    <script src="https://forms.yandex.ru/_static/embed.js"></script>
+    <iframe src="https://forms.yandex.ru/u/6aac36541f1eb51a94405164?iframe=1"
+            frameborder="0"
+            name="ya-form-6aac36541f1eb51a94405164"
+            width="100%"
+            height="760"
+            title="Форма заявки">
+    </iframe>
+  </div>
+</section>
+
+<footer>
+  <div class="f-left">
+    <p><b>Режим работы:</b> 9:00 - 18:00</p>
+    <p><b>Контакты:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
+  </div>
+  <div class="f-right">
+    <a class="f-top" href="blog.html">Блог</a>
+    <a class="f-top" href="privacy.html">Политика конфиденциальности ↑</a>
+  </div>
+</footer>
+
+<div id="cookieBanner">
+  <p>Мы используем файлы cookie для корректной работы сайта и анализа посещаемости. <a href="privacy.html">Подробнее</a></p>
+  <div class="cookie-btns">
+    <button id="cookieAccept">Принять</button>
+    <button id="cookieDecline">Отклонить</button>
+  </div>
+</div>
+
+<script>
+const FRAME_START = 2000;
+const FRAME_END   = 2120;
+const FRAME_TOTAL = FRAME_END - FRAME_START + 1;
+const FRAME_PAD   = 5;
+const FRAME_EXT   = 'jpg';
+const FRAME_DIR   = 'images/frames/';
+
+const isMobile = window.matchMedia('(max-width:820px)').matches ||
+    /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+const canvas = document.getElementById('heroCanvas');
+const sticky = document.getElementById('sticky');
+const overlay = document.getElementById('loadOverlay');
+const loadMsg = document.getElementById('loadMsg');
+
+async function initDesktop() {
+    loadMsg.textContent = 'Загрузка кадров…';
+    overlay.classList.add('active');
+
+    const ctx = canvas.getContext('2d');
+    const wrap = document.getElementById('wrap');
+
+    async function loadImage(url, retries = 3) {
+        for (let attempt = 0; attempt <= retries; attempt++) {
+            const img = await new Promise((resolve) => {
+                const im = new Image();
+                im.onload = () => resolve(im);
+                im.onerror = () => resolve(null);
+                im.src = attempt === 0 ? url : url + '?retry=' + attempt;
+            });
+            if (img) return img;
+            if (attempt < retries) {
+                await new Promise(r => setTimeout(r, 500 * (attempt + 1)));
+            }
+        }
+        return null;
+    }
+
+    const urlFor = (num) => FRAME_DIR + 'frame_' + String(num).padStart(FRAME_PAD, '0') + '.' + FRAME_EXT;
+    const firstImg = await loadImage(urlFor(FRAME_START), 4);
+
+    if (!firstImg) {
+        canvas.width = 1920;
+        canvas.height = 1080;
+        ctx.fillStyle = '#0b0f10';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#cba365';
+        ctx.font = '20px Montserrat';
+        ctx.textAlign = 'center';
+        ctx.fillText('Не удалось загрузить ' + urlFor(FRAME_START), canvas.width / 2, canvas.height / 2);
+        overlay.classList.remove('active');
+        console.error('❌ Не найден кадр:', urlFor(FRAME_START));
+        return;
+    }
+
+    canvas.width = firstImg.naturalWidth;
+    canvas.height = firstImg.naturalHeight;
+    ctx.drawImage(firstImg, 0, 0, canvas.width, canvas.height);
+    overlay.classList.remove('active');
+
+    const frames = new Array(FRAME_TOTAL);
+    frames[0] = firstImg;
+    const CONCURRENT = 4;
+    const indices = [];
+    for (let i = 1; i < FRAME_TOTAL; i++) indices.push(i);
+
+    async function worker() {
+        while (indices.length > 0) {
+            const i = indices.shift();
+            const img = await loadImage(urlFor(FRAME_START + i), 2);
+            if (img) frames[i] = img;
+            await new Promise(r => setTimeout(r, 30));
+        }
+    }
+    const workers = [];
+    for (let i = 0; i < CONCURRENT; i++) workers.push(worker());
+    Promise.all(workers);
+
+    let currentFrame = 0, targetFrame = 0, animationId = null;
+
+    function nearestLoaded(idx) {
+        if (frames[idx]) return frames[idx];
+        for (let d = 1; d < FRAME_TOTAL; d++) {
+            if (frames[idx - d]) return frames[idx - d];
+            if (frames[idx + d]) return frames[idx + d];
+        }
+        return firstImg;
+    }
+
+    function render() {
+        const img = nearestLoaded(Math.round(currentFrame));
+        if (img) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+        const diff = targetFrame - currentFrame;
+        if (Math.abs(diff) > 0.001) {
+            currentFrame += diff * 0.18;
+            animationId = requestAnimationFrame(render);
+        } else {
+            currentFrame = targetFrame;
+            animationId = null;
+        }
+    }
+
+    function onScroll() {
+        const rect = wrap.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, -rect.top / (wrap.offsetHeight - window.innerHeight)));
+        targetFrame = progress * (FRAME_TOTAL - 1);
+        if (!animationId) animationId = requestAnimationFrame(render);
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => { onScroll(); ticking = false; });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    window.addEventListener('resize', onScroll);
+    onScroll();
+}
+
+function initMobileStatic() {
+    loadMsg.textContent = 'Загрузка …';
+    overlay.classList.add('active');
+    canvas.style.display = 'none';
+
+    const img = document.createElement('img');
+    img.src = 'images/mobile-static.jpg';
+    img.alt = '';
+    img.className = 'hero-static';
+
+    const shade = document.querySelector('.shade');
+    sticky.insertBefore(img, shade);
+
+    let finished = false;
+    const finish = () => {
+        if (finished) return;
+        finished = true;
+        overlay.classList.remove('active');
+    };
+    img.addEventListener('load', finish);
+    img.addEventListener('error', () => {
+        console.warn('⚠️ mobile-static.jpg не найден в images/');
+        finish();
+    });
+    setTimeout(finish, 4000);
+}
+
+if (isMobile) initMobileStatic();
+else initDesktop();
+
+const wg = document.getElementById('worksGrid');
+if (wg) {
+    for (let n = 1; n <= 8; n++) {
+        const f = document.createElement('figure');
+        f.className = 'reveal';
+        f.innerHTML = `<div class="ph">Фото ${n}</div><img src="images/works/work-${String(n).padStart(2,'0')}.png" alt="Пример работы ${n}" loading="lazy" onerror="this.remove()">`;
+        wg.appendChild(f);
+    }
+}
+
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+if (burger && mobileMenu) {
+    burger.onclick = () => mobileMenu.classList.toggle('open');
+    mobileMenu.querySelectorAll('a').forEach(a =>
+        a.addEventListener('click', () => mobileMenu.classList.remove('open'))
+    );
+}
+
+const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+        if (en.isIntersecting) {
+            en.target.classList.add('visible');
+            io.unobserve(en.target);
+        }
+    });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+(function(){
+  var check = document.getElementById('consentCheck');
+  var wrap = document.getElementById('formWrap');
+  var msg = document.getElementById('formLockedMsg');
+  if (!check || !wrap) return;
+
+  if (localStorage.getItem('pdConsent') === 'accepted') {
+    check.checked = true;
+    wrap.classList.remove('locked');
+  } else {
+    if (msg) msg.classList.add('show');
+  }
+
+  check.addEventListener('change', function(){
+    if (check.checked) {
+      wrap.classList.remove('locked');
+      if (msg) msg.classList.remove('show');
+      localStorage.setItem('pdConsent', 'accepted');
+    } else {
+      wrap.classList.add('locked');
+      if (msg) msg.classList.add('show');
+      localStorage.removeItem('pdConsent');
+    }
+  });
+})();
+
+(function(){
+  var banner = document.getElementById('cookieBanner');
+  if (!banner) return;
+  if (!localStorage.getItem('cookieConsent')) banner.style.display = 'flex';
+  document.getElementById('cookieAccept').onclick = function(){
+    localStorage.setItem('cookieConsent', 'accepted');
+    banner.style.display = 'none';
+  };
+  document.getElementById('cookieDecline').onclick = function(){
+    localStorage.setItem('cookieConsent', 'declined');
+    banner.style.display = 'none';
+  };
+})();
+</script>
+</body>
+</html>

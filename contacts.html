@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b363b">
+<title>Контакты — Престиж Мебель</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{--hb:#2b363b;--g:#cba365;--y:#ffd23e;--d:#2e2e2c;--bg:#0b0f10}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
+
+  header{position:fixed;top:0;left:0;right:0;height:80px;background:var(--hb);display:flex;align-items:center;padding:0 40px;z-index:100}
+  .nav-left,.nav-right{display:flex;gap:30px;flex:1}
+  .nav-right{justify-content:flex-end}
+  .logo{flex:1;text-align:center;color:var(--g);font-size:20px;letter-spacing:1.5px;text-decoration:none}
+  header a{color:var(--g);text-decoration:none;font-size:14px;transition:opacity .2s}
+  header a:hover{opacity:.75}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);padding:6px;z-index:120}
+  .burger span{width:24px;height:2px;background:var(--g)}
+  .mobile-menu{position:fixed;top:80px;left:0;right:0;background:var(--hb);display:none;flex-direction:column;padding:10px 24px 20px;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .mobile-menu a{color:var(--g);text-decoration:none;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .mobile-menu.open{display:flex}
+
+  .contacts-hero{padding:170px 24px 70px;text-align:center;background:linear-gradient(180deg,#0b0f10 0%,#1a2226 60%,#0b0f10 100%)}
+  .contacts-hero h1{font-size:clamp(1.9rem,4.5vw,3.4rem);font-weight:700;margin-bottom:26px;line-height:1.25}
+  .contacts-hero p{color:#cfd8dc;max-width:700px;margin:0 auto;line-height:1.9;font-size:clamp(.95rem,1.6vw,1.15rem)}
+
+  .contact-info{background:var(--hb);padding:80px 24px}
+  .contact-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:36px;text-align:center}
+  .contact-item{background:rgba(255,255,255,.03);border:1px solid rgba(203,163,101,.2);border-radius:16px;padding:38px 24px;transition:transform .3s,border-color .3s}
+  .contact-item:hover{transform:translateY(-4px);border-color:rgba(203,163,101,.5)}
+  .contact-icon{width:54px;height:54px;margin:0 auto 22px;border-radius:14px;background:rgba(203,163,101,.14);display:flex;align-items:center;justify-content:center}
+  .contact-icon svg{width:26px;height:26px;stroke:var(--g);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .contact-label{font-size:12px;color:var(--g);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;font-weight:600}
+  .contact-value{font-size:clamp(1rem,1.6vw,1.15rem);color:#fff;font-weight:600;line-height:1.5;word-break:break-word}
+  .contact-value a{color:#fff;text-decoration:none;transition:color .2s}
+  .contact-value a:hover{color:var(--g)}
+  .contact-note{font-size:13px;color:#a8acaa;margin-top:8px}
+
+  .socials{background:var(--d);padding:100px 24px;text-align:center}
+  .socials h2{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:700;margin-bottom:20px}
+  .socials-sub{color:#c9cdcb;max-width:620px;margin:0 auto 60px;line-height:1.8;font-size:clamp(.95rem,1.5vw,1.1rem)}
+  .socials-grid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;max-width:900px;margin:0 auto}
+  .social-btn{display:flex;align-items:center;gap:14px;padding:18px 28px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(203,163,101,.25);color:#fff;text-decoration:none;font-weight:600;font-size:15px;transition:all .3s;min-width:200px}
+  .social-btn:hover{background:rgba(203,163,101,.12);border-color:var(--g);transform:translateY(-3px)}
+  .social-btn svg{width:26px;height:26px;fill:var(--g);flex-shrink:0}
+  .social-btn .social-name{display:block;font-size:15px;font-weight:600;color:#fff}
+  .social-btn .social-note{display:block;font-size:12px;color:#a8acaa;font-weight:400;margin-top:2px}
+
+  .quote{background:var(--bg);padding:120px 24px 140px}
+  .quote h2{text-align:center;color:var(--g);font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;margin-bottom:20px}
+  .quote-sub{text-align:center;color:#c9cdcb;max-width:640px;margin:0 auto 40px;line-height:1.9;font-size:clamp(.95rem,1.5vw,1.05rem)}
+
+  .consent-box{max-width:920px;margin:0 auto 24px;text-align:center}
+  .consent-label{display:inline-flex;align-items:flex-start;gap:12px;cursor:pointer;color:#c9cdcb;font-size:13px;line-height:1.6;text-align:left;max-width:640px}
+  .consent-label input{margin-top:2px;width:18px;height:18px;accent-color:var(--g);flex-shrink:0;cursor:pointer}
+  .consent-label a{color:var(--g);text-decoration:underline}
+
+  .yandex-form-wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:32px;
+    border-radius:20px;
+    background:#1c1c1a;
+    border:1px solid rgba(203,163,101,.25);
+    box-shadow:0 24px 60px rgba(0,0,0,.55);
+    position:relative;
+  }
+  .yandex-form-wrap iframe{
+    display:block;
+    width:100% !important;
+    min-height:760px;
+    border:0;
+    border-radius:12px;
+    background:#1c1c1a;
+  }
+  .yandex-form-wrap.locked{pointer-events:none;opacity:.4;filter:grayscale(.5);transition:all .3s}
+  .form-locked-msg{max-width:920px;margin:0 auto 20px;text-align:center;color:var(--y);font-size:13px;display:none}
+  .form-locked-msg.show{display:block}
+
+  @media(min-width:1100px){
+    .yandex-form-wrap{max-width:960px;padding:40px}
+  }
+
+  footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .f-left p{font-size:13px;color:#e8e8e6;margin-bottom:4px}
+  .f-left a{color:#e8e8e6;text-decoration:none}
+  .f-top{color:#fff;font-size:13px;font-weight:600;text-decoration:none}
+  .f-top:hover{color:var(--g)}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  #cookieBanner{position:fixed;bottom:0;left:0;right:0;background:#1c1c1a;border-top:1px solid var(--g);padding:16px 24px;display:none;align-items:center;justify-content:space-between;gap:16px;z-index:500;flex-wrap:wrap;box-shadow:0 -10px 30px rgba(0,0,0,.5)}
+  #cookieBanner p{color:#cfd8dc;font-size:13px;margin:0;flex:1;min-width:250px;line-height:1.5}
+  #cookieBanner a{color:var(--g);text-decoration:underline}
+  .cookie-btns{display:flex;gap:10px;flex-wrap:wrap}
+  .cookie-btns button{font-family:inherit;font-size:13px;cursor:pointer;padding:10px 24px;border-radius:8px;font-weight:700;transition:opacity .2s}
+  .cookie-btns button:hover{opacity:.85}
+  #cookieAccept{background:var(--g);color:#1a1a1a;border:0}
+  #cookieDecline{background:transparent;color:#c9cdcb;border:1px solid #555}
+
+  @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:20px;max-width:500px}}
+  @media(max-width:768px){
+    html{scroll-padding-top:70px}
+    header{height:60px;padding:0 16px}
+    .nav-left,.nav-right{display:none}
+    .burger{display:flex}
+    .mobile-menu{top:60px}
+    .logo{font-size:17px}
+    .contacts-hero{padding:130px 20px 50px}
+    .contact-info{padding:60px 20px}
+    .socials{padding:80px 20px}
+    .socials-sub{margin-bottom:40px}
+    .quote{padding:80px 16px 100px}
+    .yandex-form-wrap{padding:16px;border-radius:16px}
+    .yandex-form-wrap iframe{min-height:820px}
+    footer{padding:28px 16px;justify-content:center;text-align:center}
+    .social-btn{min-width:100%;max-width:340px}
+    #cookieBanner{padding:14px 16px;justify-content:center}
+    .cookie-btns{width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <div class="nav-left">
+    <a href="index.html">Главная</a>
+    <a href="works.html">Примеры работ</a>
+  </div>
+  <a href="index.html" class="logo">ПРЕСТИЖ МЕБЕЛЬ</a>
+  <div class="nav-right">
+    <a href="showroom.html">Шоурум</a>
+    <a href="about.html">О компании</a>
+    <a href="contacts.html">Контакты</a>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Главная</a>
+  <a href="works.html">Примеры работ</a>
+  <a href="showroom.html">Шоурум</a>
+  <a href="about.html">О компании</a>
+  <a href="contacts.html">Контакты</a>
+</nav>
+
+<section class="contacts-hero">
+  <h1>Свяжитесь с нами</h1>
+  <p>Ответим на вопросы, рассчитаем стоимость и поможем выбрать материалы. Работаем ежедневно с 9:00 до 18:00.</p>
+</section>
+
+<section class="contact-info">
+  <div class="contact-grid">
+
+    <div class="contact-item reveal">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div class="contact-label">Телефон</div>
+      <div class="contact-value"><a href="tel:+79034153911">+7 903 415 3911</a></div>
+      <div class="contact-note">Ежедневно 9:00 – 18:00</div>
+    </div>
+
+    <div class="contact-item reveal">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value"><a href="mailto:kmvprestige@kmvprestige.ru">kmvprestige@kmvprestige.ru</a></div>
+      <div class="contact-note">Отвечаем в течение дня</div>
+    </div>
+
+    <div class="contact-item reveal">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="contact-label">Производство</div>
+      <div class="contact-value">г. Ессентуки</div>
+      <div class="contact-note">Ставропольский край</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="socials">
+  <h2 class="reveal">Мы на связи во всех соцсетях</h2>
+  <p class="socials-sub reveal">Пишите туда, где вам удобно — мы готовы ответить в любой из этих соцсетей. Обычно отвечаем в течение 15–30 минут в рабочее время.</p>
+
+  <div class="socials-grid">
+    <a href="https://wa.me/79034153911" target="_blank" rel="noopener" class="social-btn reveal">
+      <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.03 0C5.4 0 .02 5.38.02 12c0 2.11.55 4.17 1.6 5.99L0 24l6.15-1.61a11.96 11.96 0 0 0 5.88 1.5h.01c6.62 0 12-5.38 12-12 0-3.2-1.25-6.21-3.52-8.41zM12.04 21.8h-.01c-1.78 0-3.53-.48-5.06-1.39l-.36-.21-3.65.96.97-3.56-.24-.37a9.94 9.94 0 0 1-1.53-5.32c0-5.5 4.48-9.98 10-9.98 2.67 0 5.18 1.04 7.07 2.93a9.9 9.9 0 0 1 2.93 7.06c0 5.5-4.48 9.98-10 9.98zm5.5-7.47c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.35.22-.65.08-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.07-.15-.68-1.65-.93-2.26-.25-.6-.5-.5-.68-.5h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.56.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/></svg>
+      <div>
+        <span class="social-name">WhatsApp</span>
+        <span class="social-note">Быстрый ответ</span>
+      </div>
+    </a>
+
+    <a href="https://t.me/+79034153911" target="_blank" rel="noopener" class="social-btn reveal">
+      <svg viewBox="0 0 24 24"><path d="M11.94 0C5.35 0 0 5.35 0 11.94c0 6.6 5.35 11.94 11.94 11.94 6.6 0 11.94-5.34 11.94-11.94C23.88 5.35 18.54 0 11.94 0zm5.86 7.94l-1.97 9.28c-.15.66-.54.82-1.09.51l-3.02-2.23-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.08 5.61-5.07c.24-.21-.05-.33-.38-.12l-6.93 4.37-2.99-.94c-.65-.2-.66-.65.14-.96l11.68-4.5c.54-.2 1.01.13.84.92z"/></svg>
+      <div>
+        <span class="social-name">Telegram</span>
+        <span class="social-note">Удобно для файлов</span>
+      </div>
+    </a>
+
+    <a href="https://vk.com/prestigemebel" target="_blank" rel="noopener" class="social-btn reveal">
+      <svg viewBox="0 0 24 24"><path d="M12.8 18.5c-6.76 0-10.6-4.63-10.76-12.32h3.38c.11 5.64 2.6 8.03 4.57 8.52V6.18h3.19v4.86c1.94-.21 3.98-2.42 4.67-4.86h3.18c-.53 3-2.74 5.21-4.31 6.12 1.57.74 4.08 2.67 5.04 6.2h-3.5c-.75-2.33-2.62-4.13-5.08-4.38v4.38h-.38z"/></svg>
+      <div>
+        <span class="social-name">ВКонтакте</span>
+        <span class="social-note">Новости и работы</span>
+      </div>
+    </a>
+
+    <a href="https://instagram.com/prestigemebel" target="_blank" rel="noopener" class="social-btn reveal">
+      <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+      <div>
+        <span class="social-name">Instagram</span>
+        <span class="social-note">Фото проектов</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="quote" id="quoteForm">
+  <h2 class="reveal">Оставить заявку</h2>
+  <p class="quote-sub reveal">Заполните форму — мы получим заявку и свяжемся с вами в течение дня. Можно прикрепить эскиз, фото или ТЗ.</p>
+
+  <div class="consent-box reveal">
+    <label class="consent-label">
+      <input type="checkbox" id="consentCheck">
+      <span>Я согласен(на) на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank">Политикой конфиденциальности</a> и подтверждаю, что ознакомлен(а) с ней.</span>
+    </label>
+  </div>
+  <p class="form-locked-msg" id="formLockedMsg">Отметьте согласие на обработку персональных данных, чтобы открыть форму.</p>
+
+  <div class="yandex-form-wrap reveal locked" id="formWrap">
+    <script src="https://forms.yandex.ru/_static/embed.js"></script>
+    <iframe src="https://forms.yandex.ru/u/6aac36541f1eb51a94405164?iframe=1"
+            frameborder="0"
+            name="ya-form-6aac36541f1eb51a94405164"
+            width="100%"
+            height="760"
+            title="Форма заявки">
+    </iframe>
+  </div>
+</section>
+
+<footer>
+  <div class="f-left">
+    <p><b>Режим работы:</b> 9:00 - 18:00</p>
+    <p><b>Контакты:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
+  </div>
+  <a class="f-top" href="privacy.html">Политика конфиденциальности ↑</a>
+</footer>
+
+<div id="cookieBanner">
+  <p>Мы используем файлы cookie для корректной работы сайта и анализа посещаемости. <a href="privacy.html">Подробнее</a></p>
+  <div class="cookie-btns">
+    <button id="cookieAccept">Принять</button>
+    <button id="cookieDecline">Отклонить</button>
+  </div>
+</div>
+
+<script>
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+if (burger && mobileMenu) {
+  burger.onclick = () => mobileMenu.classList.toggle('open');
+  mobileMenu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'))
+  );
+}
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      en.target.classList.add('visible');
+      io.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ── согласие на обработку ПД + блокировка формы ──
+(function(){
+  var check = document.getElementById('consentCheck');
+  var wrap = document.getElementById('formWrap');
+  var msg = document.getElementById('formLockedMsg');
+  if (!check || !wrap) return;
+  check.addEventListener('change', function(){
+    if (check.checked) {
+      wrap.classList.remove('locked');
+      if (msg) msg.classList.remove('show');
+      localStorage.setItem('pdConsent', 'accepted');
+    } else {
+      wrap.classList.add('locked');
+      if (msg) msg.classList.add('show');
+      localStorage.removeItem('pdConsent');
+    }
+  });
+})();
+
+// ── cookie banner ──
+(function(){
+  var banner = document.getElementById('cookieBanner');
+  if (!banner) return;
+  if (!localStorage.getItem('cookieConsent')) banner.style.display = 'flex';
+  document.getElementById('cookieAccept').onclick = function(){
+    localStorage.setItem('cookieConsent', 'accepted');
+    banner.style.display = 'none';
+  };
+  document.getElementById('cookieDecline').onclick = function(){
+    localStorage.setItem('cookieConsent', 'declined');
+    banner.style.display = 'none';
+  };
+})();
+</script>
+</body>
+</html>

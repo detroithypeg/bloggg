@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2b363b">
+<title>Примеры работ — Престиж Мебель</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{--hb:#2b363b;--g:#cba365;--y:#ffd23e;--d:#2e2e2c;--bg:#0b0f10}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
+
+  header{position:fixed;top:0;left:0;right:0;height:80px;background:var(--hb);display:flex;align-items:center;padding:0 40px;z-index:100}
+  .nav-left,.nav-right{display:flex;gap:30px;flex:1}
+  .nav-right{justify-content:flex-end}
+  .logo{flex:1;text-align:center;color:var(--g);font-size:20px;letter-spacing:1.5px;text-decoration:none}
+  header a{color:var(--g);text-decoration:none;font-size:14px;transition:opacity .2s}
+  header a:hover{opacity:.75}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);padding:6px;z-index:120}
+  .burger span{width:24px;height:2px;background:var(--g)}
+  .mobile-menu{position:fixed;top:80px;left:0;right:0;background:var(--hb);display:none;flex-direction:column;padding:10px 24px 20px;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .mobile-menu a{color:var(--g);text-decoration:none;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .mobile-menu.open{display:flex}
+
+  .works-hero{padding:160px 24px 70px;text-align:center;background:linear-gradient(180deg,#0b0f10 0%,#1a2226 100%)}
+  .works-hero h1{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;margin-bottom:22px}
+  .works-hero p{color:#cfd8dc;max-width:680px;margin:0 auto;line-height:1.8;font-size:clamp(.95rem,1.6vw,1.1rem)}
+
+  .works-grid{
+    max-width:1300px;margin:0 auto;padding:80px 36px 100px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  }
+  .work{
+    position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;
+    background:#1c1c1a;cursor:pointer;transition:transform .35s ease,box-shadow .35s ease;
+  }
+  .work:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(0,0,0,.55)}
+  .work img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+  .work:hover img{transform:scale(1.06)}
+  .work .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5c5c58;font-size:13px}
+  .work .overlay{
+    position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.85));
+    opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:20px;z-index:2;
+  }
+  .work:hover .overlay{opacity:1}
+  .work-title{font-size:15px;font-weight:600;color:#fff;line-height:1.4}
+
+  .modal{
+    position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:200;
+    display:none;align-items:center;justify-content:center;padding:24px;
+    opacity:0;transition:opacity .3s;
+  }
+  .modal.open{display:flex;opacity:1}
+  .modal-inner{max-width:1100px;width:100%;position:relative}
+  .modal-inner img{width:100%;max-height:85vh;object-fit:contain;border-radius:12px;background:#111}
+  .modal-close{
+    position:absolute;top:-14px;right:-14px;background:var(--g);color:#1a1a1a;
+    border:0;width:44px;height:44px;border-radius:50%;font-size:24px;line-height:1;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;
+    transition:transform .2s;
+  }
+  .modal-close:hover{transform:scale(1.1)}
+  .modal-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    background:rgba(0,0,0,.55);color:#fff;border:0;width:48px;height:48px;
+    border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .2s;
+  }
+  .modal-nav:hover{background:rgba(203,163,101,.85);color:#000}
+  .modal-prev{left:14px}
+  .modal-next{right:14px}
+  .modal-counter{text-align:center;color:var(--g);margin-top:16px;font-size:14px;letter-spacing:1px}
+
+  .works-cta{background:var(--d);padding:100px 24px;text-align:center}
+  .works-cta h2{font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:700;margin-bottom:22px}
+  .works-cta p{color:#c9cdcb;max-width:620px;margin:0 auto 40px;line-height:1.8}
+  .btn-gold{display:inline-block;background:var(--g);color:#1a1a1a;padding:18px 46px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:opacity .2s}
+  .btn-gold:hover{opacity:.85}
+
+  footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .f-left p{font-size:13px;color:#e8e8e6;margin-bottom:4px}
+  .f-left a{color:#e8e8e6;text-decoration:none}
+  .f-right{display:flex;gap:24px;flex-wrap:wrap}
+  .f-top{color:#fff;font-size:13px;font-weight:600;text-decoration:none;transition:color .2s}
+  .f-top:hover{color:var(--g)}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  @media(max-width:1000px){.works-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:820px){.works-grid{grid-template-columns:1fr;padding:60px 16px 80px}}
+  @media(max-width:768px){
+    html{scroll-padding-top:70px}
+    header{height:60px;padding:0 16px}
+    .nav-left,.nav-right{display:none}
+    .burger{display:flex}
+    .mobile-menu{top:60px}
+    .logo{font-size:17px}
+    .works-hero{padding:120px 20px 50px}
+    footer{padding:28px 16px;justify-content:center;text-align:center;flex-direction:column}
+    .f-right{justify-content:center}
+    .modal-close{top:-10px;right:6px;width:38px;height:38px;font-size:20px}
+    .modal-nav{width:40px;height:40px;font-size:18px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <div class="nav-left">
+    <a href="index.html">Главная</a>
+    <a href="works.html">Примеры работ</a>
+  </div>
+  <a href="index.html" class="logo">ПРЕСТИЖ МЕБЕЛЬ</a>
+  <div class="nav-right">
+    <a href="showroom.html">Шоурум</a>
+    <a href="blog.html">Блог</a>
+    <a href="about.html">О компании</a>
+    <a href="contacts.html">Контакты</a>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Главная</a>
+  <a href="works.html">Примеры работ</a>
+  <a href="showroom.html">Шоурум</a>
+  <a href="blog.html">Блог</a>
+  <a href="about.html">О компании</a>
+  <a href="contacts.html">Контакты</a>
+</nav>
+
+<section class="works-hero">
+  <h1>Примеры наших работ</h1>
+  <p>Кухни, шкафы, гардеробные, детские и другая мебель на заказ. Все фото — реальные проекты, выполненные для наших клиентов.</p>
+</section>
+
+<div class="works-grid" id="worksGrid"></div>
+
+<section class="works-cta">
+  <h2 class="reveal">Хотите так же?</h2>
+  <p class="reveal">Расскажите о своей идее — мы бесплатно рассчитаем проект и предложим материалы под ваш бюджет.</p>
+  <a href="contacts.html" class="btn-gold reveal">Оставить заявку</a>
+</section>
+
+<footer>
+  <div class="f-left">
+    <p><b>Режим работы:</b> 9:00 - 18:00</p>
+    <p><b>Контакты:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
+  </div>
+  <div class="f-right">
+    <a class="f-top" href="blog.html">Блог</a>
+    <a class="f-top" href="privacy.html">Политика конфиденциальности ↑</a>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-inner">
+    <button class="modal-close" id="modalClose">×</button>
+    <button class="modal-nav modal-prev" id="modalPrev">‹</button>
+    <button class="modal-nav modal-next" id="modalNext">›</button>
+    <img id="modalImg" src="" alt="">
+    <div class="modal-counter" id="modalCounter"></div>
+  </div>
+</div>
+
+<script>
+const WORKS = [
+  { img:'images/works/work-01.png', title:'Кухня в современном стиле' },
+  { img:'images/works/work-02.png', title:'Угловая кухня с островом' },
+  { img:'images/works/work-03.png', title:'Белая кухня с фрезеровкой' },
+  { img:'images/works/work-04.png', title:'Шкаф-купе в спальню' },
+  { img:'images/works/work-05.png', title:'Гардеробная комната' },
+  { img:'images/works/work-06.png', title:'Детская мебель' },
+  { img:'images/works/work-07.png', title:'Кухня из массива дуба' },
+  { img:'images/works/work-08.png', title:'Минималистичная кухня' },
+  { img:'images/works/work-09.png', title:'Прихожая с зеркалом' },
+];
+
+const grid = document.getElementById('worksGrid');
+WORKS.forEach((w, i) => {
+  const el = document.createElement('div');
+  el.className = 'work reveal';
+  el.dataset.index = i;
+  el.innerHTML = `
+    <div class="ph">Фото ${i + 1}</div>
+    <img src="${w.img}" alt="${w.title}" loading="lazy" onerror="this.style.display='none'">
+    <div class="overlay"><div class="work-title">${w.title}</div></div>
+  `;
+  grid.appendChild(el);
+});
+
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const modalCounter = document.getElementById('modalCounter');
+let currentIndex = 0;
+
+function openModal(index) {
+  currentIndex = index;
+  const w = WORKS[currentIndex];
+  modalImg.src = w.img;
+  modalImg.alt = w.title;
+  modalCounter.textContent = `${currentIndex + 1} / ${WORKS.length} — ${w.title}`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function showNext() {
+  currentIndex = (currentIndex + 1) % WORKS.length;
+  openModal(currentIndex);
+}
+function showPrev() {
+  currentIndex = (currentIndex - 1 + WORKS.length) % WORKS.length;
+  openModal(currentIndex);
+}
+
+grid.addEventListener('click', e => {
+  const card = e.target.closest('.work');
+  if (!card) return;
+  openModal(parseInt(card.dataset.index));
+});
+
+document.getElementById('modalClose').onclick = closeModal;
+document.getElementById('modalNext').onclick = showNext;
+document.getElementById('modalPrev').onclick = showPrev;
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+document.addEventListener('keydown', e => {
+  if (!modal.classList.contains('open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowRight') showNext();
+  if (e.key === 'ArrowLeft') showPrev();
+});
+
+let touchStartX = 0;
+modal.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+modal.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].screenX;
+  if (Math.abs(diff) > 50) {
+    diff > 0 ? showNext() : showPrev();
+  }
+}, { passive: true });
+
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.onclick = () => mobileMenu.classList.toggle('open');
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
