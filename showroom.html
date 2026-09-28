@@ -149,8 +149,8 @@
   <p>Отметьте материалы, которые вам понравятся. В конце нажмите «Обсудить проект» — и мы получим ваш выбор вместе с заявкой.</p>
 </section>
 
-<nav class="cat-nav">
-  <div class="cat-nav-inner" id="catNav"></div>
+<nav class="cat-nav" id="catNav">
+  <div class="cat-nav-inner" id="catNavInner"></div>
 </nav>
 
 <main id="categories"></main>
@@ -247,6 +247,7 @@ const CATALOG = [
 //  РЕНДЕР
 // ============================================================
 const catNavEl = document.getElementById('catNav');
+const catNavInner = document.getElementById('catNavInner');
 const categoriesEl = document.getElementById('categories');
 
 CATALOG.forEach((cat, i) => {
@@ -257,7 +258,7 @@ CATALOG.forEach((cat, i) => {
   btn.onclick = () => {
     document.getElementById('cat-' + cat.id).scrollIntoView({ behavior: 'smooth' });
   };
-  catNavEl.appendChild(btn);
+  catNavInner.appendChild(btn);
 
   const section = document.createElement('section');
   section.className = 'category';
@@ -374,7 +375,7 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
 
 // ============================================================
 //  АКТИВНАЯ КАТЕГОРИЯ ПРИ СКРОЛЛЕ
-//  (с автоматической прокруткой вкладки в центр)
+//  Активная кнопка встаёт на место первой кнопки (слева)
 // ============================================================
 const catButtons = document.querySelectorAll('.cat-btn');
 const sections = document.querySelectorAll('.category');
@@ -384,10 +385,10 @@ function scrollActiveButtonIntoView(btn) {
   if (!btn || !catNavEl) return;
   const navRect = catNavEl.getBoundingClientRect();
   const btnRect = btn.getBoundingClientRect();
-  // Целевая позиция — центрируем кнопку внутри меню
+  // Активная кнопка встаёт к левому краю меню — на место первой кнопки
   const targetScrollLeft = catNavEl.scrollLeft
                           + (btnRect.left - navRect.left)
-                          - (navRect.width - btnRect.width) / 2;
+                          - 24; // отступ = padding-left контейнера
   catNavEl.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
 }
 
@@ -395,7 +396,6 @@ window.addEventListener('scroll', () => {
   let activeId = '';
   sections.forEach(sec => {
     const rect = sec.getBoundingClientRect();
-    // Считаем активной секцию, которая пересекает верхнюю часть экрана
     if (rect.top <= 220 && rect.bottom > 220) activeId = sec.id;
   });
 
