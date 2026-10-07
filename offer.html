@@ -12,13 +12,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113534318', 'ym');
+    ym(113534318, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113534318" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
 <style>
   :root{--hb:#2b363b;--g:#cba365;--y:#ffd23e;--d:#2e2e2c;--bg:#0b0f10}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:90px}
   body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
 
-  /* ── header ── */
   header{position:fixed;top:0;left:0;right:0;height:80px;background:var(--hb);display:flex;align-items:center;padding:0 40px;z-index:100}
   .nav-left,.nav-right{display:flex;gap:30px;flex:1}
   .nav-right{justify-content:flex-end}
@@ -31,12 +43,10 @@
   .mobile-menu a{color:var(--g);text-decoration:none;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
   .mobile-menu.open{display:flex}
 
-  /* ── hero ── */
   .page-hero{padding:160px 24px 60px;text-align:center;background:linear-gradient(180deg,#0b0f10 0%,#1a2226 60%,#0b0f10 100%)}
   .page-hero h1{font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;margin-bottom:20px;line-height:1.25}
   .page-hero p{color:#cfd8dc;max-width:700px;margin:0 auto;line-height:1.9;font-size:clamp(.95rem,1.5vw,1.05rem)}
 
-  /* ── документ ── */
   .doc{background:var(--bg);padding:60px 24px 100px}
   .doc-inner{max-width:900px;margin:0 auto;background:#141618;border:1px solid rgba(203,163,101,.2);border-radius:16px;padding:56px 56px 64px}
   .doc-inner h2{color:var(--g);font-size:clamp(1.15rem,2vw,1.4rem);font-weight:700;margin:36px 0 14px;line-height:1.4}
@@ -51,7 +61,6 @@
   .doc-requisites p{color:#cfd8dc;line-height:2;font-size:14.5px;margin-bottom:6px}
   .doc-requisites b{color:#fff}
 
-  /* ── footer ── */
   footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:50px 40px 40px}
   .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
   .footer-col h4{color:var(--g);font-size:13px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:16px;font-weight:700}
