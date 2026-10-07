@@ -5,14 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#2b363b">
 <title>Политика конфиденциальности — Престиж Мебель</title>
+<meta name="description" content="Политика конфиденциальности и обработки персональных данных ИП Болдуев А.П., Престиж Мебель, г. Ессентуки.">
+<meta name="robots" content="noindex, follow">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
   :root{--hb:#2b363b;--g:#cba365;--y:#ffd23e;--d:#2e2e2c;--bg:#0b0f10}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:90px}
-  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;line-height:1.8}
+  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
 
   header{position:fixed;top:0;left:0;right:0;height:80px;background:var(--hb);display:flex;align-items:center;padding:0 40px;z-index:100}
   .nav-left,.nav-right{display:flex;gap:30px;flex:1}
@@ -26,39 +30,42 @@
   .mobile-menu a{color:var(--g);text-decoration:none;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
   .mobile-menu.open{display:flex}
 
-  .policy-hero{padding:160px 24px 60px;text-align:center;background:linear-gradient(180deg,#0b0f10 0%,#1a2226 100%)}
-  .policy-hero h1{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:700;margin-bottom:20px}
-  .policy-hero p{color:#cfd8dc;max-width:700px;margin:0 auto;font-size:clamp(.9rem,1.5vw,1.05rem)}
+  .page-hero{padding:160px 24px 60px;text-align:center;background:linear-gradient(180deg,#0b0f10 0%,#1a2226 60%,#0b0f10 100%)}
+  .page-hero h1{font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;margin-bottom:20px;line-height:1.25}
+  .page-hero p{color:#cfd8dc;max-width:700px;margin:0 auto;line-height:1.9;font-size:clamp(.95rem,1.5vw,1.05rem)}
 
-  .policy-body{background:var(--d);padding:80px 24px 120px}
-  .policy-inner{max-width:900px;margin:0 auto}
-  .policy-inner h2{color:var(--g);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;margin:48px 0 18px;line-height:1.4}
-  .policy-inner h2:first-child{margin-top:0}
-  .policy-inner h3{color:#fff;font-size:clamp(1rem,1.8vw,1.15rem);font-weight:600;margin:28px 0 12px}
-  .policy-inner p{color:#cfd8dc;margin-bottom:16px;font-size:clamp(.9rem,1.4vw,1rem)}
-  .policy-inner ul{color:#cfd8dc;margin:0 0 16px 24px;font-size:clamp(.9rem,1.4vw,1rem)}
-  .policy-inner li{margin-bottom:8px}
-  .policy-inner b{color:#fff;font-weight:600}
-  .policy-inner a{color:var(--g);text-decoration:underline}
-  .policy-inner a:hover{opacity:.8}
-  .policy-date{display:inline-block;padding:8px 20px;background:rgba(203,163,101,.1);border:1px solid rgba(203,163,101,.3);border-radius:20px;color:var(--g);font-size:13px;margin-top:16px}
+  .doc{background:var(--bg);padding:60px 24px 100px}
+  .doc-inner{max-width:900px;margin:0 auto;background:#141618;border:1px solid rgba(203,163,101,.2);border-radius:16px;padding:56px 56px 64px}
+  .doc-inner h2{color:var(--g);font-size:clamp(1.15rem,2vw,1.4rem);font-weight:700;margin:36px 0 14px;line-height:1.4}
+  .doc-inner h2:first-child{margin-top:0}
+  .doc-inner p{color:#cfd8dc;line-height:1.9;font-size:15px;margin-bottom:14px}
+  .doc-inner ul,.doc-inner ol{color:#cfd8dc;line-height:1.9;font-size:15px;margin:0 0 14px 22px}
+  .doc-inner li{margin-bottom:6px}
+  .doc-inner b{color:#fff;font-weight:600}
+  .doc-inner a{color:var(--g);text-decoration:underline}
+  .doc-meta{text-align:center;color:#8a8f94;font-size:13px;margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .doc-requisites{background:rgba(203,163,101,.07);border:1px solid rgba(203,163,101,.25);border-radius:12px;padding:24px 28px;margin-top:36px}
+  .doc-requisites p{color:#cfd8dc;line-height:2;font-size:14.5px;margin-bottom:6px}
+  .doc-requisites b{color:#fff}
 
-  footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-  .f-left p{font-size:13px;color:#e8e8e6;margin-bottom:4px}
-  .f-left a{color:#e8e8e6;text-decoration:none}
-  .f-top{color:#fff;font-size:13px;font-weight:600;text-decoration:none}
-  .f-top:hover{color:var(--g)}
+  /* ── footer ── */
+  footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:50px 40px 40px}
+  .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+  .footer-col h4{color:var(--g);font-size:13px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:16px;font-weight:700}
+  .footer-col p{font-size:13px;color:#cfd8dc;line-height:1.9;margin-bottom:6px}
+  .footer-col a{color:#e8e8e6;text-decoration:none;transition:color .2s}
+  .footer-col a:hover{color:var(--g)}
+  .footer-col p b{color:#fff;font-weight:600}
+  .footer-requisites{font-size:12.5px;color:#a8acaa;line-height:1.9}
+  .footer-requisites b{color:#e8e8e6;font-weight:600}
+  .footer-bottom{max-width:1200px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:12.5px;color:#8a8f94}
+  .footer-bottom a{color:#8a8f94;text-decoration:none}
+  .footer-bottom a:hover{color:var(--g)}
 
-  /* cookie banner */
-  #cookieBanner{position:fixed;bottom:0;left:0;right:0;background:#1c1c1a;border-top:1px solid var(--g);padding:16px 24px;display:none;align-items:center;justify-content:space-between;gap:16px;z-index:500;flex-wrap:wrap;box-shadow:0 -10px 30px rgba(0,0,0,.5)}
-  #cookieBanner p{color:#cfd8dc;font-size:13px;margin:0;flex:1;min-width:250px;line-height:1.5}
-  #cookieBanner a{color:var(--g);text-decoration:underline}
-  .cookie-btns{display:flex;gap:10px;flex-wrap:wrap}
-  .cookie-btns button{font-family:inherit;font-size:13px;cursor:pointer;padding:10px 24px;border-radius:8px;font-weight:700;transition:opacity .2s}
-  .cookie-btns button:hover{opacity:.85}
-  #cookieAccept{background:var(--g);color:#1a1a1a;border:0}
-  #cookieDecline{background:transparent;color:#c9cdcb;border:1px solid #555}
-
+  @media(max-width:820px){
+    .doc-inner{padding:40px 32px 48px}
+    .footer-inner{grid-template-columns:1fr 1fr;gap:30px}
+  }
   @media(max-width:768px){
     html{scroll-padding-top:70px}
     header{height:60px;padding:0 16px}
@@ -66,11 +73,14 @@
     .burger{display:flex}
     .mobile-menu{top:60px}
     .logo{font-size:17px}
-    .policy-hero{padding:120px 20px 40px}
-    .policy-body{padding:60px 20px 80px}
-    footer{padding:28px 16px;justify-content:center;text-align:center}
-    #cookieBanner{padding:14px 16px;justify-content:center}
-    .cookie-btns{width:100%;justify-content:center}
+    .page-hero{padding:120px 20px 40px}
+    .doc{padding:40px 16px 80px}
+    .doc-inner{padding:28px 22px 36px;border-radius:12px}
+    .doc-inner h2{margin-top:28px}
+    .doc-inner p,.doc-inner ul,.doc-inner ol{font-size:14px}
+    footer{padding:40px 20px 30px}
+    .footer-inner{grid-template-columns:1fr;gap:28px}
+    .footer-bottom{flex-direction:column;text-align:center;gap:12px}
   }
 </style>
 </head>
@@ -85,6 +95,7 @@
   <a href="index.html" class="logo">ПРЕСТИЖ МЕБЕЛЬ</a>
   <div class="nav-right">
     <a href="showroom.html">Шоурум</a>
+    <a href="blog.html">Блог</a>
     <a href="about.html">О компании</a>
     <a href="contacts.html">Контакты</a>
   </div>
@@ -94,123 +105,158 @@
   <a href="index.html">Главная</a>
   <a href="works.html">Примеры работ</a>
   <a href="showroom.html">Шоурум</a>
+  <a href="blog.html">Блог</a>
   <a href="about.html">О компании</a>
   <a href="contacts.html">Контакты</a>
 </nav>
 
-<section class="policy-hero">
-  <h1>Политика в отношении обработки персональных данных</h1>
-  <p>Настоящая Политика определяет порядок обработки персональных данных и меры по обеспечению их безопасности, применяемые оператором — компанией «Престиж Мебель».</p>
-  <div class="policy-date">Редакция от 1 января 2025 года</div>
+<section class="page-hero">
+  <h1>Политика конфиденциальности</h1>
+  <p>Политика в отношении обработки персональных данных. Документ описывает, какие данные мы собираем, зачем и как их защищаем.</p>
 </section>
 
-<section class="policy-body">
-  <div class="policy-inner">
+<section class="doc">
+  <div class="doc-inner">
+
+    <p class="doc-meta">
+      Дата публикации: 07 октября 2026 г.<br>
+      Действует до замены новой редакцией
+    </p>
 
     <h2>1. Общие положения</h2>
-    <p>1.1. Настоящая Политика в отношении обработки персональных данных (далее — Политика) составлена в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые Оператором.</p>
+    <p>1.1. Настоящая Политика обработки персональных данных (далее — «Политика») составлена в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности, предпринимаемые ИП Болдуев Альберт Павлович (далее — «Оператор»).</p>
     <p>1.2. Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.</p>
-    <p>1.3. Настоящая Политика применяется ко всей информации, которую Оператор может получить о посетителях веб-сайта (далее — Сайт).</p>
+    <p>1.3. Настоящая Политика применяется ко всей информации, которую Оператор может получить о посетителях сайта <b>prestigemebel26.ru</b> (далее — «Сайт»).</p>
 
     <h2>2. Основные понятия</h2>
-    <ul>
-      <li><b>Персональные данные</b> — любая информация, относящаяся к прямо или косвенно определённому или определяемому физическому лицу (субъекту персональных данных).</li>
-      <li><b>Обработка персональных данных</b> — любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными, включая сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение персональных данных.</li>
-      <li><b>Оператор</b> — компания «Престиж Мебель», самостоятельно или совместно с другими лицами организующая и (или) осуществляющая обработку персональных данных, а также определяющая цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными.</li>
-      <li><b>Субъект персональных данных</b> — физическое лицо, чьи персональные данные обрабатываются Оператором.</li>
-      <li><b>Cookie</b> — небольшой фрагмент данных, отправленный веб-сервером и хранимый на устройстве пользователя.</li>
-    </ul>
+    <p>2.1. <b>Персональные данные</b> — любая информация, относящаяся к прямо или косвенно определённому или определяемому физическому лицу (субъекту персональных данных).</p>
+    <p>2.2. <b>Обработка персональных данных</b> — любое действие (операция) или совокупность действий, совершаемых с использованием средств автоматизации или без них с персональными данными, включая сбор, запись, систематизацию, накопление, хранение, уточнение, использование, передачу, обезличивание, блокирование, удаление, уничтожение.</p>
+    <p>2.3. <b>Оператор</b> — ИП Болдуев Альберт Павлович, самостоятельно или совместно с другими лицами организующий и (или) осуществляющий обработку персональных данных.</p>
+    <p>2.4. <b>Субъект персональных данных</b> — посетитель Сайта, оставивший заявку через формы обратной связи.</p>
 
-    <h2>3. Категории обрабатываемых персональных данных и цели обработки</h2>
-    <p>3.1. Оператор может обрабатывать следующие персональные данные субъектов:</p>
+    <h2>3. Какие данные мы собираем</h2>
+    <p>3.1. Оператор может обрабатывать следующие персональные данные субъекта:</p>
     <ul>
-      <li>фамилия, имя, отчество;</li>
-      <li>номер контактного телефона;</li>
+      <li>фамилия, имя (либо только имя — как указано в форме);</li>
+      <li>номер телефона;</li>
       <li>адрес электронной почты;</li>
-      <li>иные данные, которые субъект предоставляет добровольно через формы на Сайте.</li>
+      <li>адрес объекта для выполнения замера и монтажа (при оформлении заказа);</li>
+      <li>файлы, прикреплённые к заявке (эскизы, фото, техническое задание);</li>
+      <li>обезличенные данные о посетителях Сайта (cookie, IP-адрес, данные о браузере и устройстве) — с помощью сервисов веб-аналитики.</li>
     </ul>
-    <p>3.2. Цели обработки персональных данных:</p>
+
+    <h2>4. Цели обработки персональных данных</h2>
+    <p>4.1. Персональные данные обрабатываются в следующих целях:</p>
     <ul>
-      <li>обработка заявок и обращений субъектов, направленных через формы на Сайте;</li>
-      <li>заключение и исполнение договоров на изготовление мебели;</li>
-      <li>информирование субъекта о статусе заявки, услугах, акциях и специальных предложениях (при наличии отдельного согласия);</li>
-      <li>улучшение качества работы Сайта и оказываемых услуг.</li>
+      <li>обработка заявок, консультирование, расчёт стоимости изделий;</li>
+      <li>заключение и исполнение договора на изготовление мебели;</li>
+      <li>организация замера, доставки и монтажа изделий;</li>
+      <li>информирование о статусе заказа;</li>
+      <li>улучшение работы Сайта и качества обслуживания.</li>
     </ul>
-    <p>3.3. Правовым основанием обработки персональных данных являются: Федеральный закон от 27.07.2006 № 152-ФЗ «О персональных данных», согласие субъекта персональных данных на обработку его персональных данных, а также договоры, заключаемые между Оператором и субъектом персональных данных.</p>
 
-    <h2>4. Порядок и условия обработки персональных данных</h2>
-    <p>4.1. Обработка персональных данных осуществляется с согласия субъекта персональных данных на обработку его персональных данных.</p>
-    <p>4.2. Согласие на обработку персональных данных предоставляется субъектом путём проставления отметки в соответствующем поле формы на Сайте и подтверждается путём нажатия кнопки отправки формы.</p>
-    <p>4.3. Оператор обрабатывает персональные данные с использованием средств автоматизации и без использования таких средств.</p>
-    <p>4.4. Оператор принимает необходимые правовые, организационные и технические меры для защиты персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, предоставления, распространения, а также от иных неправомерных действий в отношении персональных данных.</p>
-    <p>4.5. Персональные данные субъектов хранятся на серверах, расположенных на территории Российской Федерации.</p>
-
-    <h2>5. Использование файлов cookie и аналитических сервисов</h2>
-    <p>5.1. Сайт использует файлы cookie и аналитические сервисы (в том числе Яндекс.Метрика) для сбора обезличенной информации о посещениях Сайта с целью улучшения его работы и качества обслуживания.</p>
-    <p>5.2. При первом посещении Сайта пользователю отображается баннер с информацией об использовании файлов cookie и запросом согласия на их обработку. Пользователь вправе отказаться от обработки файлов cookie, изменив настройки браузера или отклонив запрос в баннере.</p>
-    <p>5.3. Обезличенные данные, собираемые с помощью аналитических сервисов, не позволяют идентифицировать конкретного пользователя.</p>
-
-    <h2>6. Права субъекта персональных данных</h2>
-    <p>6.1. Субъект персональных данных имеет право:</p>
+    <h2>5. Правовые основания обработки</h2>
+    <p>5.1. Оператор обрабатывает персональные данные субъекта только в случае их отправки субъектом через формы на Сайте или по телефону/email. Отправляя свои данные, субъект выражает согласие с настоящей Политикой.</p>
+    <p>5.2. Обработка осуществляется на основании:</p>
     <ul>
-      <li>получать информацию, касающуюся обработки его персональных данных;</li>
-      <li>требовать уточнения, блокирования или уничтожения своих персональных данных, если они являются неполными, устаревшими, неточными, незаконно полученными или не являются необходимыми для заявленной цели обработки;</li>
-      <li>отозвать согласие на обработку персональных данных, направив соответствующее уведомление Оператору;</li>
-      <li>обжаловать действия или бездействие Оператора в уполномоченный орган по защите прав субъектов персональных данных (Роскомнадзор) или в судебном порядке.</li>
+      <li>согласия субъекта на обработку персональных данных;</li>
+      <li>необходимости исполнения договора, стороной которого является субъект;</li>
+      <li>требований законодательства РФ.</li>
     </ul>
-    <p>6.2. Для реализации своих прав субъект может обратиться к Оператору по контактным данным, указанным в разделе 8 настоящей Политики.</p>
 
-    <h2>7. Заключительные положения</h2>
-    <p>7.1. Оператор вправе вносить изменения в настоящую Политику. Актуальная редакция Политики размещается на Сайте в постоянном доступе.</p>
-    <p>7.2. Настоящая Политика вступает в силу с момента её размещения на Сайте и действует бессрочно до замены её новой редакцией.</p>
+    <h2>6. Порядок и условия обработки</h2>
+    <p>6.1. Обработка персональных данных осуществляется с согласия субъекта, выраженного путём отметки соответствующего чекбокса при отправке формы либо фактической отправкой данных через формы Сайта.</p>
+    <p>6.2. Оператор обеспечивает сохранность персональных данных и принимает все возможные меры, исключающие доступ к ним неуполномоченных лиц.</p>
+    <p>6.3. Персональные данные субъекта не передаются третьим лицам, за исключением случаев, предусмотренных законодательством РФ, а также случаев, когда передача необходима для исполнения договора (например, службам доставки и монтажа).</p>
+    <p>6.4. Срок хранения персональных данных — не дольше, чем этого требуют цели их обработки. Если договор не был заключён, данные удаляются в течение <b>30 дней</b> после последнего обращения субъекта.</p>
+    <p>6.5. Хранение персональных данных граждан РФ осуществляется с соблюдением требований о локализации баз данных на территории Российской Федерации.</p>
 
-    <h2>8. Контактные данные Оператора</h2>
-    <p><b>Компания «Престиж Мебель»</b></p>
-    <p>Адрес производства: Ставропольский край, г. Ессентуки</p>
-    <p>Телефон: <a href="tel:+79034153911">+7 903 415 3911</a></p>
-    <p>Email: <a href="mailto:kmvprestige@kmvprestige.ru">kmvprestige@kmvprestige.ru</a></p>
-    <p>Режим работы: ежедневно с 9:00 до 18:00</p>
+    <h2>7. Использование файлов cookie</h2>
+    <p>7.1. Сайт использует файлы cookie для корректной работы, сохранения пользовательских настроек и анализа посещаемости.</p>
+    <p>7.2. Cookie не содержат персональных данных, по которым можно однозначно идентифицировать личность, но могут содержать обезличенные идентификаторы.</p>
+    <p>7.3. Пользователь может отключить cookie в настройках браузера. Однако это может повлиять на корректность работы отдельных функций Сайта.</p>
+
+    <h2>8. Права субъекта персональных данных</h2>
+    <p>8.1. Субъект имеет право:</p>
+    <ul>
+      <li>получать информацию об обработке своих персональных данных;</li>
+      <li>требовать уточнения, блокирования или уничтожения своих данных, если они неполны, устарели, неточны или незаконно получены;</li>
+      <li>отозвать согласие на обработку персональных данных;</li>
+      <li>обжаловать действия Оператора в Роскомнадзоре или в судебном порядке.</li>
+    </ul>
+    <p>8.2. Для реализации своих прав субъект может направить письменный запрос на адрес электронной почты Оператора.</p>
+
+    <h2>9. Меры по защите персональных данных</h2>
+    <p>9.1. Оператор принимает необходимые правовые, организационные и технические меры для защиты персональных данных от неправомерного доступа, уничтожения, изменения, блокирования, копирования, распространения.</p>
+    <p>9.2. К таким мерам относятся:</p>
+    <ul>
+      <li>использование защищённого соединения HTTPS;</li>
+      <li>ограничение доступа сотрудников к персональным данным;</li>
+      <li>регулярное резервное копирование данных;</li>
+      <li>применение антивирусных и иных защитных средств.</li>
+    </ul>
+
+    <h2>10. Изменение Политики</h2>
+    <p>10.1. Оператор вправе вносить изменения в настоящую Политику. Актуальная редакция всегда размещена на данной странице.</p>
+    <p>10.2. Продолжение использования Сайта после внесения изменений означает согласие субъекта с новой редакцией Политики.</p>
+
+    <div class="doc-requisites">
+      <p><b>Реквизиты Оператора:</b></p>
+      <p>ИП Болдуев Альберт Павлович</p>
+      <p>ОГРНИП: 319265100048213</p>
+      <p>ИНН: 262603756612</p>
+      <p>Адрес: 357600, Ставропольский край, г. Ессентуки, ул. Пятигорская, 143</p>
+      <p>Телефон: <a href="tel:+79034153911">+7 903 415 3911</a></p>
+      <p>Email: <a href="mailto:kmvprestige@kmvprestige.ru">kmvprestige@kmvprestige.ru</a></p>
+    </div>
 
   </div>
 </section>
 
 <footer>
-  <div class="f-left">
-    <p><b>Режим работы:</b> 9:00 - 18:00</p>
-    <p><b>Контакты:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
-  </div>
-  <a class="f-top" href="privacy.html">Политика конфиденциальности ↑</a>
-</footer>
+  <div class="footer-inner">
 
-<div id="cookieBanner">
-  <p>Мы используем файлы cookie для корректной работы сайта и анализа посещаемости. <a href="privacy.html">Подробнее</a></p>
-  <div class="cookie-btns">
-    <button id="cookieAccept">Принять</button>
-    <button id="cookieDecline">Отклонить</button>
+    <div class="footer-col">
+      <h4>Реквизиты</h4>
+      <p class="footer-requisites">
+        <b>ИП Болдуев Альберт Павлович</b><br>
+        ОГРНИП: 319265100048213<br>
+        ИНН: 262603756612<br>
+        ОКВЭД: 31.01
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <p><b>Режим работы:</b> 9:00 – 18:00</p>
+      <p><b>Телефон:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
+      <p><b>Email:</b> <a href="mailto:kmvprestige@kmvprestige.ru">kmvprestige@kmvprestige.ru</a></p>
+      <p><b>Адрес:</b> 357600, Ставропольский край,<br>г. Ессентуки, ул. Пятигорская, 143</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Информация</h4>
+      <p><a href="about.html">О компании</a></p>
+      <p><a href="works.html">Примеры работ</a></p>
+      <p><a href="showroom.html">Шоурум материалов</a></p>
+      <p><a href="blog.html">Новости и тренды</a></p>
+      <p><a href="privacy.html">Политика конфиденциальности</a></p>
+      <p><a href="offer.html">Публичная оферта</a></p>
+    </div>
+
   </div>
-</div>
+
+  <div class="footer-bottom">
+    <span>© 2026 ИП Болдуев А. П. Все права защищены.</span>
+    <span>Не является публичной офертой в части цен и наличия.</span>
+  </div>
+</footer>
 
 <script>
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
-if (burger && mobileMenu) {
-  burger.onclick = () => mobileMenu.classList.toggle('open');
-  mobileMenu.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => mobileMenu.classList.remove('open'))
-  );
-}
-(function(){
-  var banner = document.getElementById('cookieBanner');
-  if (!localStorage.getItem('cookieConsent')) banner.style.display = 'flex';
-  document.getElementById('cookieAccept').onclick = function(){
-    localStorage.setItem('cookieConsent', 'accepted');
-    banner.style.display = 'none';
-  };
-  document.getElementById('cookieDecline').onclick = function(){
-    localStorage.setItem('cookieConsent', 'declined');
-    banner.style.display = 'none';
-  };
-})();
+burger.onclick = () => mobileMenu.classList.toggle('open');
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
 </script>
 </body>
 </html>

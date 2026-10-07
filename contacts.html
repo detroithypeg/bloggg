@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#2b363b">
 <title>Контакты — Престиж Мебель</title>
+<meta name="description" content="Контакты Престиж Мебель: телефон +7 903 415 3911, email kmvprestige@kmvprestige.ru, г. Ессентуки, ул. Пятигорская, 143. Мебель на заказ в Ставропольском крае.">
+<meta name="keywords" content="контакты Престиж Мебель, мебель на заказ Ессентуки контакты, телефон мебельной фабрики, кухни на заказ контакты">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,14 +56,9 @@
   .social-btn .social-name{display:block;font-size:15px;font-weight:600;color:#fff}
   .social-btn .social-note{display:block;font-size:12px;color:#a8acaa;font-weight:400;margin-top:2px}
 
-  .quote{background:var(--bg);padding:120px 24px 140px}
+  .quote{background:var(--bg);padding:120px 24px}
   .quote h2{text-align:center;color:var(--g);font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;margin-bottom:20px}
-  .quote-sub{text-align:center;color:#c9cdcb;max-width:640px;margin:0 auto 40px;line-height:1.9;font-size:clamp(.95rem,1.5vw,1.05rem)}
-
-  .consent-box{max-width:920px;margin:0 auto 24px;text-align:center}
-  .consent-label{display:inline-flex;align-items:flex-start;gap:12px;cursor:pointer;color:#c9cdcb;font-size:13px;line-height:1.6;text-align:left;max-width:640px}
-  .consent-label input{margin-top:2px;width:18px;height:18px;accent-color:var(--g);flex-shrink:0;cursor:pointer}
-  .consent-label a{color:var(--g);text-decoration:underline}
+  .quote-sub{text-align:center;color:#c9cdcb;max-width:640px;margin:0 auto 50px;line-height:1.9;font-size:clamp(.95rem,1.5vw,1.05rem)}
 
   .yandex-form-wrap{
     max-width:920px;
@@ -81,33 +78,32 @@
     border-radius:12px;
     background:#1c1c1a;
   }
-  .yandex-form-wrap.locked{pointer-events:none;opacity:.4;filter:grayscale(.5);transition:all .3s}
-  .form-locked-msg{max-width:920px;margin:0 auto 20px;text-align:center;color:var(--y);font-size:13px;display:none}
-  .form-locked-msg.show{display:block}
 
   @media(min-width:1100px){
     .yandex-form-wrap{max-width:960px;padding:40px}
   }
 
-  footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-  .f-left p{font-size:13px;color:#e8e8e6;margin-bottom:4px}
-  .f-left a{color:#e8e8e6;text-decoration:none}
-  .f-top{color:#fff;font-size:13px;font-weight:600;text-decoration:none}
-  .f-top:hover{color:var(--g)}
+  /* ── footer ── */
+  footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:50px 40px 40px}
+  .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+  .footer-col h4{color:var(--g);font-size:13px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:16px;font-weight:700}
+  .footer-col p{font-size:13px;color:#cfd8dc;line-height:1.9;margin-bottom:6px}
+  .footer-col a{color:#e8e8e6;text-decoration:none;transition:color .2s}
+  .footer-col a:hover{color:var(--g)}
+  .footer-col p b{color:#fff;font-weight:600}
+  .footer-requisites{font-size:12.5px;color:#a8acaa;line-height:1.9}
+  .footer-requisites b{color:#e8e8e6;font-weight:600}
+  .footer-bottom{max-width:1200px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:12.5px;color:#8a8f94}
+  .footer-bottom a{color:#8a8f94;text-decoration:none}
+  .footer-bottom a:hover{color:var(--g)}
 
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
   .reveal.visible{opacity:1;transform:translateY(0)}
 
-  #cookieBanner{position:fixed;bottom:0;left:0;right:0;background:#1c1c1a;border-top:1px solid var(--g);padding:16px 24px;display:none;align-items:center;justify-content:space-between;gap:16px;z-index:500;flex-wrap:wrap;box-shadow:0 -10px 30px rgba(0,0,0,.5)}
-  #cookieBanner p{color:#cfd8dc;font-size:13px;margin:0;flex:1;min-width:250px;line-height:1.5}
-  #cookieBanner a{color:var(--g);text-decoration:underline}
-  .cookie-btns{display:flex;gap:10px;flex-wrap:wrap}
-  .cookie-btns button{font-family:inherit;font-size:13px;cursor:pointer;padding:10px 24px;border-radius:8px;font-weight:700;transition:opacity .2s}
-  .cookie-btns button:hover{opacity:.85}
-  #cookieAccept{background:var(--g);color:#1a1a1a;border:0}
-  #cookieDecline{background:transparent;color:#c9cdcb;border:1px solid #555}
-
   @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:20px;max-width:500px}}
+  @media(max-width:820px){
+    .footer-inner{grid-template-columns:1fr 1fr;gap:30px}
+  }
   @media(max-width:768px){
     html{scroll-padding-top:70px}
     header{height:60px;padding:0 16px}
@@ -122,10 +118,10 @@
     .quote{padding:80px 16px 100px}
     .yandex-form-wrap{padding:16px;border-radius:16px}
     .yandex-form-wrap iframe{min-height:820px}
-    footer{padding:28px 16px;justify-content:center;text-align:center}
+    footer{padding:40px 20px 30px}
+    .footer-inner{grid-template-columns:1fr;gap:28px}
+    .footer-bottom{flex-direction:column;text-align:center;gap:12px}
     .social-btn{min-width:100%;max-width:340px}
-    #cookieBanner{padding:14px 16px;justify-content:center}
-    .cookie-btns{width:100%;justify-content:center}
   }
 </style>
 </head>
@@ -140,6 +136,7 @@
   <a href="index.html" class="logo">ПРЕСТИЖ МЕБЕЛЬ</a>
   <div class="nav-right">
     <a href="showroom.html">Шоурум</a>
+    <a href="blog.html">Блог</a>
     <a href="about.html">О компании</a>
     <a href="contacts.html">Контакты</a>
   </div>
@@ -149,6 +146,7 @@
   <a href="index.html">Главная</a>
   <a href="works.html">Примеры работ</a>
   <a href="showroom.html">Шоурум</a>
+  <a href="blog.html">Блог</a>
   <a href="about.html">О компании</a>
   <a href="contacts.html">Контакты</a>
 </nav>
@@ -185,7 +183,7 @@
       </div>
       <div class="contact-label">Производство</div>
       <div class="contact-value">г. Ессентуки</div>
-      <div class="contact-note">Ставропольский край</div>
+      <div class="contact-note">Ставропольский край, ул. Пятигорская, 143</div>
     </div>
 
   </div>
@@ -234,15 +232,7 @@
   <h2 class="reveal">Оставить заявку</h2>
   <p class="quote-sub reveal">Заполните форму — мы получим заявку и свяжемся с вами в течение дня. Можно прикрепить эскиз, фото или ТЗ.</p>
 
-  <div class="consent-box reveal">
-    <label class="consent-label">
-      <input type="checkbox" id="consentCheck">
-      <span>Я согласен(на) на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank">Политикой конфиденциальности</a> и подтверждаю, что ознакомлен(а) с ней.</span>
-    </label>
-  </div>
-  <p class="form-locked-msg" id="formLockedMsg">Отметьте согласие на обработку персональных данных, чтобы открыть форму.</p>
-
-  <div class="yandex-form-wrap reveal locked" id="formWrap">
+  <div class="yandex-form-wrap reveal">
     <script src="https://forms.yandex.ru/_static/embed.js"></script>
     <iframe src="https://forms.yandex.ru/u/6aac36541f1eb51a94405164?iframe=1"
             frameborder="0"
@@ -255,74 +245,56 @@
 </section>
 
 <footer>
-  <div class="f-left">
-    <p><b>Режим работы:</b> 9:00 - 18:00</p>
-    <p><b>Контакты:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
-  </div>
-  <a class="f-top" href="privacy.html">Политика конфиденциальности ↑</a>
-</footer>
+  <div class="footer-inner">
 
-<div id="cookieBanner">
-  <p>Мы используем файлы cookie для корректной работы сайта и анализа посещаемости. <a href="privacy.html">Подробнее</a></p>
-  <div class="cookie-btns">
-    <button id="cookieAccept">Принять</button>
-    <button id="cookieDecline">Отклонить</button>
+    <div class="footer-col">
+      <h4>Реквизиты</h4>
+      <p class="footer-requisites">
+        <b>ИП Болдуев Альберт Павлович</b><br>
+        ОГРНИП: 319265100048213<br>
+        ИНН: 262603756612<br>
+        ОКВЭД: 31.01
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <p><b>Режим работы:</b> 9:00 – 18:00</p>
+      <p><b>Телефон:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
+      <p><b>Email:</b> <a href="mailto:kmvprestige@kmvprestige.ru">kmvprestige@kmvprestige.ru</a></p>
+      <p><b>Адрес:</b> 357600, Ставропольский край,<br>г. Ессентуки, ул. Пятигорская, 143</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Информация</h4>
+      <p><a href="about.html">О компании</a></p>
+      <p><a href="works.html">Примеры работ</a></p>
+      <p><a href="showroom.html">Шоурум материалов</a></p>
+      <p><a href="blog.html">Новости и тренды</a></p>
+      <p><a href="privacy.html">Политика конфиденциальности</a></p>
+      <p><a href="offer.html">Публичная оферта</a></p>
+    </div>
+
   </div>
-</div>
+
+  <div class="footer-bottom">
+    <span>© 2026 ИП Болдуев А. П. Все права защищены.</span>
+    <span>Не является публичной офертой в части цен и наличия.</span>
+  </div>
+</footer>
 
 <script>
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
-if (burger && mobileMenu) {
-  burger.onclick = () => mobileMenu.classList.toggle('open');
-  mobileMenu.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => mobileMenu.classList.remove('open'))
-  );
-}
+burger.onclick = () => mobileMenu.classList.toggle('open');
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
 const io = new IntersectionObserver(entries => {
   entries.forEach(en => {
-    if (en.isIntersecting) {
-      en.target.classList.add('visible');
-      io.unobserve(en.target);
-    }
+    if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// ── согласие на обработку ПД + блокировка формы ──
-(function(){
-  var check = document.getElementById('consentCheck');
-  var wrap = document.getElementById('formWrap');
-  var msg = document.getElementById('formLockedMsg');
-  if (!check || !wrap) return;
-  check.addEventListener('change', function(){
-    if (check.checked) {
-      wrap.classList.remove('locked');
-      if (msg) msg.classList.remove('show');
-      localStorage.setItem('pdConsent', 'accepted');
-    } else {
-      wrap.classList.add('locked');
-      if (msg) msg.classList.add('show');
-      localStorage.removeItem('pdConsent');
-    }
-  });
-})();
-
-// ── cookie banner ──
-(function(){
-  var banner = document.getElementById('cookieBanner');
-  if (!banner) return;
-  if (!localStorage.getItem('cookieConsent')) banner.style.display = 'flex';
-  document.getElementById('cookieAccept').onclick = function(){
-    localStorage.setItem('cookieConsent', 'accepted');
-    banner.style.display = 'none';
-  };
-  document.getElementById('cookieDecline').onclick = function(){
-    localStorage.setItem('cookieConsent', 'declined');
-    banner.style.display = 'none';
-  };
-})();
 </script>
 </body>
 </html>
