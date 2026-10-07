@@ -47,12 +47,53 @@
   .hero h1{font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;margin-bottom:18px}
   .hero p{color:#cfd8dc;max-width:680px;margin:0 auto;line-height:1.8;font-size:clamp(.95rem,1.5vw,1.1rem)}
 
-  .cat-nav{position:sticky;top:80px;background:var(--hb);z-index:50;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth}
+  /* ── навигация категорий ── */
+  .cat-nav{position:sticky;top:80px;background:var(--hb);z-index:50;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth;padding:6px 0}
   .cat-nav::-webkit-scrollbar{display:none}
-  .cat-nav-inner{display:flex;gap:8px;padding:14px 24px;max-width:1200px;margin:0 auto;white-space:nowrap}
-  .cat-btn{background:transparent;border:1px solid rgba(203,163,101,.35);color:var(--g);padding:10px 22px;border-radius:30px;font:inherit;font-size:14px;cursor:pointer;transition:all .25s;white-space:nowrap}
-  .cat-btn:hover{background:rgba(203,163,101,.1)}
-  .cat-btn.active{background:var(--g);color:#1a1a1a;border-color:var(--g);font-weight:600}
+  .cat-nav-inner{display:flex;gap:12px;padding:14px 24px;max-width:1200px;margin:0 auto;white-space:nowrap}
+
+  /* ── НЕОНОВАЯ КНОПКА ── */
+  .cat-btn{
+    position:relative;
+    background:#0e1214;
+    border:1px solid rgba(203,163,101,.55);
+    color:var(--g);
+    padding:11px 24px;
+    border-radius:30px;
+    font:inherit;
+    font-size:14px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .35s ease;
+    white-space:nowrap;
+    box-shadow:
+      0 0 8px rgba(203,163,101,.35),
+      0 0 18px rgba(203,163,101,.18),
+      inset 0 0 8px rgba(203,163,101,.06);
+  }
+  .cat-btn:hover{
+    color:#fff;
+    border-color:var(--g);
+    background:#141a1d;
+    box-shadow:
+      0 0 14px rgba(203,163,101,.6),
+      0 0 32px rgba(203,163,101,.35),
+      0 0 55px rgba(203,163,101,.18),
+      inset 0 0 12px rgba(203,163,101,.15);
+    text-shadow:0 0 10px rgba(203,163,101,.9);
+  }
+  .cat-btn.active{
+    background:var(--g);
+    color:#1a1a1a;
+    border-color:var(--g);
+    font-weight:700;
+    box-shadow:
+      0 0 16px rgba(203,163,101,.75),
+      0 0 36px rgba(203,163,101,.5),
+      0 0 65px rgba(203,163,101,.25),
+      inset 0 0 10px rgba(255,255,255,.3);
+    text-shadow:none;
+  }
 
   .category{padding:60px 24px;border-bottom:1px solid rgba(255,255,255,.06)}
   .category:nth-child(even){background:var(--d)}
