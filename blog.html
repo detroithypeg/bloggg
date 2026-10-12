@@ -32,16 +32,115 @@
   body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
 
   header{position:fixed;top:0;left:0;right:0;height:80px;background:var(--hb);display:flex;align-items:center;padding:0 40px;z-index:100}
-  .nav-left,.nav-right{display:flex;gap:30px;flex:1}
+  .nav-left,.nav-right{display:flex;gap:12px;flex:1;align-items:center}
   .nav-right{justify-content:flex-end}
-  .logo{flex:1;text-align:center;color:var(--g);font-size:20px;letter-spacing:1.5px;text-decoration:none}
-  header a{color:var(--g);text-decoration:none;font-size:14px;transition:opacity .2s}
-  header a:hover{opacity:.75}
+  .logo{flex:1;text-align:center;color:var(--g);font-size:20px;letter-spacing:1.5px;text-decoration:none;transition:all .35s ease}
+  .logo:hover{
+    color:#fff;
+    text-shadow:
+      0 0 10px rgba(203,163,101,.9),
+      0 0 22px rgba(203,163,101,.6),
+      0 0 40px rgba(203,163,101,.3);
+  }
+  .nav-left a,
+  .nav-right a{
+    position:relative;
+    display:inline-block;
+    color:var(--g);
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    padding:8px 16px;
+    border-radius:24px;
+    border:1px solid transparent;
+    transition:all .35s ease;
+    background:transparent;
+  }
+  .nav-left a:hover,
+  .nav-right a:hover{
+    color:#fff;
+    border-color:rgba(203,163,101,.55);
+    background:#0e1214;
+    text-shadow:0 0 10px rgba(203,163,101,.9);
+    box-shadow:
+      0 0 10px rgba(203,163,101,.55),
+      0 0 22px rgba(203,163,101,.3),
+      0 0 40px rgba(203,163,101,.15),
+      inset 0 0 10px rgba(203,163,101,.12);
+  }
+  .nav-left a.current,
+  .nav-right a.current{
+    color:#1a1a1a;
+    background:var(--g);
+    border-color:var(--g);
+    font-weight:700;
+    box-shadow:
+      0 0 12px rgba(203,163,101,.7),
+      0 0 28px rgba(203,163,101,.4),
+      inset 0 0 8px rgba(255,255,255,.3);
+    text-shadow:none;
+  }
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);padding:6px;z-index:120}
-  .burger span{width:24px;height:2px;background:var(--g)}
-  .mobile-menu{position:fixed;top:80px;left:0;right:0;background:var(--hb);display:none;flex-direction:column;padding:10px 24px 20px;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-  .mobile-menu a{color:var(--g);text-decoration:none;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .burger span{width:24px;height:2px;background:var(--g);transition:all .3s}
+
+  .mobile-menu{
+    position:fixed;
+    top:60px;
+    left:0;
+    right:0;
+    background:var(--hb);
+    display:none;
+    flex-direction:column;
+    gap:12px;
+    padding:24px 20px 28px;
+    z-index:99;
+    box-shadow:0 20px 45px rgba(0,0,0,.6);
+    max-height:calc(100vh - 60px);
+    overflow-y:auto;
+  }
   .mobile-menu.open{display:flex}
+  .mobile-menu a{
+    position:relative;
+    display:block;
+    background:#0e1214;
+    border:1px solid rgba(203,163,101,.55);
+    color:var(--g);
+    padding:16px 24px;
+    border-radius:30px;
+    font-size:15px;
+    font-weight:500;
+    text-align:center;
+    text-decoration:none;
+    transition:all .35s ease;
+    box-shadow:
+      0 0 8px rgba(203,163,101,.35),
+      0 0 18px rgba(203,163,101,.18),
+      inset 0 0 8px rgba(203,163,101,.06);
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a:active{
+    color:#fff;
+    border-color:var(--g);
+    background:#141a1d;
+    box-shadow:
+      0 0 14px rgba(203,163,101,.6),
+      0 0 32px rgba(203,163,101,.35),
+      0 0 55px rgba(203,163,101,.18),
+      inset 0 0 12px rgba(203,163,101,.15);
+    text-shadow:0 0 10px rgba(203,163,101,.9);
+  }
+  .mobile-menu a.current{
+    background:var(--g);
+    color:#1a1a1a;
+    border-color:var(--g);
+    font-weight:700;
+    box-shadow:
+      0 0 16px rgba(203,163,101,.75),
+      0 0 36px rgba(203,163,101,.5),
+      0 0 65px rgba(203,163,101,.25),
+      inset 0 0 10px rgba(255,255,255,.3);
+    text-shadow:none;
+  }
 
   .blog-hero{padding:170px 24px 60px;text-align:center;background:linear-gradient(180deg,#0b0f10 0%,#1a2226 60%,#0b0f10 100%)}
   .blog-hero h1{font-size:clamp(1.9rem,4.5vw,3.4rem);font-weight:700;margin-bottom:20px;line-height:1.25}
@@ -61,7 +160,7 @@
   .footer-col a{color:#e8e8e6;text-decoration:none;transition:color .2s}
   .footer-col a:hover{color:var(--g)}
   .footer-col p b{color:#fff;font-weight:600}
-  .footer-requisites{font-size:12.5px;color:#a8acaa;line-height:1.9}
+  .footer-requisites{font-size:12.5px;color:#a8acaa;line-height:1.9;padding-top:6px}
   .footer-requisites b{color:#e8e8e6;font-weight:600}
   .footer-bottom{max-width:1200px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:12.5px;color:#8a8f94}
   .footer-bottom a{color:#8a8f94;text-decoration:none}
@@ -75,7 +174,6 @@
     header{height:60px;padding:0 16px}
     .nav-left,.nav-right{display:none}
     .burger{display:flex}
-    .mobile-menu{top:60px}
     .logo{font-size:17px}
     .blog-hero{padding:130px 20px 40px}
     .elfsight-wrap{padding:50px 16px 80px}
@@ -96,7 +194,7 @@
   <a href="index.html" class="logo">ПРЕСТИЖ МЕБЕЛЬ</a>
   <div class="nav-right">
     <a href="showroom.html">Шоурум</a>
-    <a href="blog.html">Блог</a>
+    <a href="blog.html" class="current">Блог</a>
     <a href="about.html">О компании</a>
     <a href="contacts.html">Контакты</a>
   </div>
@@ -106,7 +204,7 @@
   <a href="index.html">Главная</a>
   <a href="works.html">Примеры работ</a>
   <a href="showroom.html">Шоурум</a>
-  <a href="blog.html">Блог</a>
+  <a href="blog.html" class="current">Блог</a>
   <a href="about.html">О компании</a>
   <a href="contacts.html">Контакты</a>
 </nav>
@@ -126,7 +224,6 @@
   <div class="footer-inner">
 
     <div class="footer-col">
-      <h4>Реквизиты</h4>
       <p class="footer-requisites">
         <b>ИП Болдуев Альберт Павлович</b><br>
         ОГРНИП: 319265100048213<br>
@@ -139,7 +236,7 @@
       <h4>Контакты</h4>
       <p><b>Режим работы:</b> 9:00 – 18:00</p>
       <p><b>Телефон:</b> <a href="tel:+79034153911">+7 903 415 3911</a></p>
-      <p><b>Email:</b> <a href="mailto:kmvprestige@kmvprestige.ru">kmvprestige@kmvprestige.ru</a></p>
+      <p><b>Email:</b> <a href="mailto:prestigemebelkmv@mail.ru">prestigemebelkmv@mail.ru</a></p>
       <p><b>Адрес:</b> 357600, Ставропольский край,<br>г. Ессентуки, ул. Пятигорская, 143</p>
     </div>
 
