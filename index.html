@@ -38,10 +38,68 @@
   header a{color:var(--g);text-decoration:none;font-size:14px;transition:opacity .2s}
   header a:hover{opacity:.75}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);padding:6px;z-index:120}
-  .burger span{width:24px;height:2px;background:var(--g)}
-  .mobile-menu{position:fixed;top:80px;left:0;right:0;background:var(--hb);display:none;flex-direction:column;padding:10px 24px 20px;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-  .mobile-menu a{color:var(--g);text-decoration:none;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .burger span{width:24px;height:2px;background:var(--g);transition:all .3s}
+
+  /* ── мобильное меню — неоновые кнопки ── */
+  .mobile-menu{
+    position:fixed;
+    top:60px;
+    left:0;
+    right:0;
+    background:var(--hb);
+    display:none;
+    flex-direction:column;
+    gap:12px;
+    padding:24px 20px 28px;
+    z-index:99;
+    box-shadow:0 20px 45px rgba(0,0,0,.6);
+    max-height:calc(100vh - 60px);
+    overflow-y:auto;
+  }
   .mobile-menu.open{display:flex}
+
+  .mobile-menu a{
+    position:relative;
+    display:block;
+    background:#0e1214;
+    border:1px solid rgba(203,163,101,.55);
+    color:var(--g);
+    padding:16px 24px;
+    border-radius:30px;
+    font-size:15px;
+    font-weight:500;
+    text-align:center;
+    text-decoration:none;
+    transition:all .35s ease;
+    box-shadow:
+      0 0 8px rgba(203,163,101,.35),
+      0 0 18px rgba(203,163,101,.18),
+      inset 0 0 8px rgba(203,163,101,.06);
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a:active{
+    color:#fff;
+    border-color:var(--g);
+    background:#141a1d;
+    box-shadow:
+      0 0 14px rgba(203,163,101,.6),
+      0 0 32px rgba(203,163,101,.35),
+      0 0 55px rgba(203,163,101,.18),
+      inset 0 0 12px rgba(203,163,101,.15);
+    text-shadow:0 0 10px rgba(203,163,101,.9);
+  }
+  .mobile-menu a.current{
+    background:var(--g);
+    color:#1a1a1a;
+    border-color:var(--g);
+    font-weight:700;
+    box-shadow:
+      0 0 16px rgba(203,163,101,.75),
+      0 0 36px rgba(203,163,101,.5),
+      0 0 65px rgba(203,163,101,.25),
+      inset 0 0 10px rgba(255,255,255,.3);
+    text-shadow:none;
+  }
 
   .scroll-wrapper{height:400vh;position:relative}
   .sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0b0f10}
@@ -136,7 +194,6 @@
     header{height:60px;padding:0 16px}
     .nav-left,.nav-right{display:none}
     .burger{display:flex}
-    .mobile-menu{top:60px}
     .logo{font-size:17px}
     .about-section{padding:90px 20px 40px}
     .why{padding:80px 20px}
@@ -174,7 +231,7 @@
 </header>
 
 <nav class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Главная</a>
+  <a href="index.html" class="current">Главная</a>
   <a href="works.html">Примеры работ</a>
   <a href="showroom.html">Шоурум</a>
   <a href="blog.html">Блог</a>
