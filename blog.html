@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#2b363b">
-<title>Новости и тренды — Престиж Мебель</title>
-<meta name="description" content="Новости и тренды мебели, дизайна интерьера и новых материалов. Актуальные события из мира мебельной индустрии от Престиж Мебель, Ессентуки.">
-<meta name="keywords" content="новости мебели, тренды интерьера, новости дизайна, мебельные новости, тренды 2026, дизайн интерьера">
+<title>Блог и новости — Престиж Мебель</title>
+<meta name="description" content="Новости, статьи и тренды из мира мебели и дизайна интерьера от компании Престиж Мебель, Ессентуки.">
+<meta name="keywords" content="новости мебели, блог о дизайне, статьи про интерьер, тренды мебели, Престиж Мебель">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,17 +142,136 @@
     text-shadow:none;
   }
 
+  /* ── HERO ── */
   .blog-hero{padding:170px 24px 60px;text-align:center;background:linear-gradient(180deg,#0b0f10 0%,#1a2226 60%,#0b0f10 100%)}
   .blog-hero h1{font-size:clamp(1.9rem,4.5vw,3.4rem);font-weight:700;margin-bottom:20px;line-height:1.25}
   .blog-hero p{color:#cfd8dc;max-width:700px;margin:0 auto;line-height:1.9;font-size:clamp(.95rem,1.6vw,1.15rem)}
 
-  .elfsight-wrap{
-    max-width:1200px;
-    margin:0 auto;
-    padding:70px 24px 100px;
-    min-height:400px;
+  /* ── СЕТКА НОВОСТЕЙ ── */
+  .blog-container{max-width:1200px;margin:0 auto;padding:40px 24px 100px}
+  
+  .blog-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
   }
 
+  .post-card{
+    background:#1c1c1a;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.06);
+    display:flex;
+    flex-direction:column;
+    transition:transform .3s, border-color .3s;
+    text-decoration:none;
+  }
+  .post-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(203,163,101,.5);
+    box-shadow:0 18px 45px rgba(0,0,0,.5);
+  }
+
+  .post-img{
+    aspect-ratio:16/10;
+    background:#252525;
+    position:relative;
+    overflow:hidden;
+  }
+  .post-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .6s ease;
+  }
+  .post-card:hover .post-img img{
+    transform:scale(1.05);
+  }
+  .post-img .ph{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#5c5c58;
+    font-size:13px;
+  }
+
+  .post-content{
+    padding:24px 26px 28px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .post-meta{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:12px;
+    font-size:12px;
+  }
+  .post-cat{
+    color:var(--g);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-weight:600;
+  }
+  .post-date{
+    color:#8a8f94;
+  }
+  .post-title{
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    line-height:1.4;
+    margin-bottom:12px;
+    transition:color .2s;
+  }
+  .post-card:hover .post-title{
+    color:var(--g);
+  }
+  .post-excerpt{
+    font-size:14px;
+    color:#b8bcba;
+    line-height:1.7;
+    margin-bottom:20px;
+    flex:1;
+  }
+  .post-more{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--g);
+    font-size:13px;
+    font-weight:600;
+    margin-top:auto;
+  }
+  .post-more::after{
+    content:'→';
+    transition:transform .2s;
+  }
+  .post-card:hover .post-more::after{
+    transform:translateX(4px);
+  }
+
+  .loading{
+    text-align:center;
+    padding:80px 20px;
+    color:var(--g);
+    font-size:15px;
+    grid-column:1/-1;
+  }
+  .error-msg{
+    text-align:center;
+    padding:80px 20px;
+    color:#ff6b6b;
+    font-size:15px;
+    grid-column:1/-1;
+    line-height:1.8;
+  }
+
+  /* ── FOOTER ── */
   footer{background:var(--d);border-top:1px solid rgba(255,255,255,.15);padding:50px 40px 40px}
   .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
   .footer-col h4{color:var(--g);font-size:13px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:16px;font-weight:700}
@@ -166,6 +285,9 @@
   .footer-bottom a{color:#8a8f94;text-decoration:none}
   .footer-bottom a:hover{color:var(--g)}
 
+  @media(max-width:1000px){
+    .blog-grid{grid-template-columns:repeat(2, 1fr)}
+  }
   @media(max-width:820px){
     .footer-inner{grid-template-columns:1fr 1fr;gap:30px}
   }
@@ -176,7 +298,9 @@
     .burger{display:flex}
     .logo{font-size:17px}
     .blog-hero{padding:130px 20px 40px}
-    .elfsight-wrap{padding:50px 16px 80px}
+    .blog-container{padding:20px 16px 80px}
+    .blog-grid{grid-template-columns:1fr; gap:20px}
+    .post-content{padding:20px}
     footer{padding:40px 20px 30px}
     .footer-inner{grid-template-columns:1fr;gap:28px}
     .footer-bottom{flex-direction:column;text-align:center;gap:12px}
@@ -211,18 +335,17 @@
 
 <section class="blog-hero">
   <h1>Новости и тренды</h1>
-  <p>Актуальные события из мира мебели, дизайна интерьера и новых материалов. Мы собираем самое интересное — чтобы вы были в курсе трендов.</p>
+  <p>Полезные статьи, актуальные тренды и новости из мира мебели. Мы делимся тем, что действительно важно знать при выборе мебели.</p>
 </section>
 
-<div class="elfsight-wrap">
-  <!-- Elfsight RSS Feed -->
-  <script src="https://elfsightcdn.com/platform.js" async></script>
-  <div class="elfsight-app-51113667-7a73-49cf-8f05-a66b0a5a865f" data-elfsight-app-lazy></div>
+<div class="blog-container">
+  <div class="blog-grid" id="blogGrid">
+    <div class="loading">Загрузка статей…</div>
+  </div>
 </div>
 
 <footer>
   <div class="footer-inner">
-
     <div class="footer-col">
       <p class="footer-requisites">
         <b>ИП Болдуев Альберт Павлович</b><br>
@@ -231,7 +354,6 @@
         ОКВЭД: 31.01
       </p>
     </div>
-
     <div class="footer-col">
       <h4>Контакты</h4>
       <p><b>Режим работы:</b> 9:00 – 18:00</p>
@@ -239,7 +361,6 @@
       <p><b>Email:</b> <a href="mailto:prestigemebelkmv@mail.ru">prestigemebelkmv@mail.ru</a></p>
       <p><b>Адрес:</b> 357600, Ставропольский край,<br>г. Ессентуки, ул. Пятигорская, 143</p>
     </div>
-
     <div class="footer-col">
       <h4>Информация</h4>
       <p><a href="about.html">О компании</a></p>
@@ -249,9 +370,7 @@
       <p><a href="privacy.html">Политика конфиденциальности</a></p>
       <p><a href="offer.html">Публичная оферта</a></p>
     </div>
-
   </div>
-
   <div class="footer-bottom">
     <span>© 2026 ИП Болдуев А. П. Все права защищены.</span>
     <span>Не является публичной офертой в части цен и наличия.</span>
@@ -259,6 +378,66 @@
 </footer>
 
 <script>
+// ============================================================
+//  ЗАГРУЗКА НОВОСТЕЙ ИЗ news.json
+// ============================================================
+async function loadBlog() {
+  const grid = document.getElementById('blogGrid');
+
+  try {
+    // Добавляем ?v=... чтобы браузер всегда загружал свежую версию файла, а не кэшировал старую
+    const res = await fetch('news.json?v=' + Date.now());
+    if (!res.ok) throw new Error('Файл news.json не найден');
+    
+    const posts = await res.json();
+
+    if (!posts.length) {
+      grid.innerHTML = '<div class="loading">Статей пока нет. Заходите позже!</div>';
+      return;
+    }
+
+    grid.innerHTML = posts.map(post => {
+      const dateStr = post.date ? new Date(post.date).toLocaleDateString('ru-RU', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }) : '';
+
+      return `
+        <a href="#" class="post-card" onclick="return false;">
+          <div class="post-img">
+            ${post.image 
+              ? `<img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` 
+              : ''}
+            <div class="ph" style="${post.image ? 'display:none' : ''}">Нет фото</div>
+          </div>
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-cat">${post.category || 'Новость'}</span>
+              <span class="post-date">${dateStr}</span>
+            </div>
+            <h3 class="post-title">${post.title}</h3>
+            <p class="post-excerpt">${post.excerpt || ''}</p>
+            <span class="post-more">Читать далее</span>
+          </div>
+        </a>
+      `;
+    }).join('');
+
+  } catch (err) {
+    console.error('Ошибка загрузки блога:', err);
+    grid.innerHTML = `
+      <div class="error-msg">
+        Не удалось загрузить статьи.<br>
+        Убедитесь, что файл <b>news.json</b> лежит рядом с blog.html и в нём нет ошибок.
+      </div>
+    `;
+  }
+}
+
+loadBlog();
+
+// Мобильное меню
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 burger.onclick = () => mobileMenu.classList.toggle('open');
